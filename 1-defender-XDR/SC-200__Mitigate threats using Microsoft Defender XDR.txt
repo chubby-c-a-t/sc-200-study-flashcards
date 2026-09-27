@@ -1,0 +1,110 @@
+#separator:tab
+#html:true
+#tags column:3
+"In a Microsoft XDR scenario, which tool evaluates a device&#x27;s risk level and updates its compliance status?"	Microsoft Intune	Basics SC-200: XDR
+"In a Microsoft XDR scenario, which tool actively blocks access to corporate apps based on a device&#x27;s noncompliant status?"	Microsoft Entra ID (via Conditional Access)	Basics SC-200: XDR
+What does the acronym CAE stand for in relation to Microsoft Entra ID Conditional Access?	Continuous Access Evaluation	Basics SC-200: XDR
+In the Microsoft Security Operations Model, what is the primary role of Tier 1 (Triage) analysts?	Rapid remediation of high-volume, known incident types and approving automated workflows.	Model SC-200: SecOps
+In the Microsoft Security Operations Model, what is the primary role of Tier 2 (Investigation) analysts?	Deep investigation into complex, multi-stage attacks and piloting new alert types.	Model SC-200: SecOps
+In the Microsoft Security Operations Model, what is the primary role of Tier 3 (Hunt) analysts?	Proactively identifying undetected threats using a hypothesis-driven model.	Model SC-200: SecOps
+What is the base URL endpoint for the Microsoft Graph API?	https://graph.microsoft.com	API Graph SC-200:
+Which Microsoft Graph API method is used by Security Operations Analysts to run KQL queries for advanced hunting?	runHuntingQuery	API Graph SC-200:
+To run an Advanced Hunting query via the Microsoft Graph Security API, what language must the query be written in?	Kusto Query Language (KQL)	API Graph SC-200:
+What is the difference between an alert and an incident in Defender XDR?	An alert is a single malicious or suspicious event. An incident is a correlation of related alerts that tell a broader attack story.	
+What is the primary function of the Microsoft Defender portal?	To provide a unified view to correlate, investigate, and respond to threats across the entire Microsoft security environment.	
+How long is raw data available for Advanced Hunting queries in Defender XDR?	30 days.	
+What query language is used for Advanced Hunting in Microsoft Defender XDR?	Kusto Query Language (KQL).	
+What are the three required columns when creating a custom detection rule from an Advanced Hunting query?	Timestamp, DeviceId, and ReportId.	
+What feature allows analysts to review and approve or reject pending remediation actions?	The Action Center.	
+What is Automated Investigation and Response (AIR) in Microsoft Defender?	A capability that automatically investigates alerts to determine their scope and optionally applies remediation actions.	
+Where should an analyst go to view the overall security posture and recommendations for the organization?	Microsoft Secure Score.	
+What does a higher Microsoft Secure Score indicate?	The organization has implemented more recommended security actions, lowering its risk profile.	
+In Advanced Hunting, which table contains real-time data about authentication events in Defender XDR?	AADSignInEventsBeta.	
+What Defender XDR feature provides intelligence reports on active threat actors, campaigns, and zero-day vulnerabilities?	Threat Analytics.	
+What role does the Security Copilot Threat Intelligence Briefing Agent play?	"It generates prioritized, actionable summaries based on recent threat actor activity and the organization&#x27;s specific vulnerabilities."	
+What happens when you classify an incident as a &quot;False Positive&quot;?	The incident is closed, and the system uses this feedback to tune detection algorithms and reduce future alert noise.	
+What is the Incident Graph in Defender XDR?	A visual, node-based representation of all entities (users, devices, files) and their relationships within an incident.	
+What can you configure in the Defender portal settings to ensure you are immediately aware of high-severity incidents?	Email notifications for incidents.	
+If an automated investigation finds a malicious file, where does it send the request for analyst approval (if not set to fully automated)?	The Action Center (Pending Actions tab).	
+What does the &quot;Attack Story&quot; tab of an incident provide?	A timeline view that dynamically replays the alerts and events of the incident in chronological order.	
+What actions can a custom detection rule automatically take on a device?	Isolate the device, collect an investigation package, or run an antivirus scan.	
+Which Advanced Hunting table would you query to find routine system assessments and endpoint configuration details?	DeviceInfo.	
+What status should you set an incident to while you are actively working on it?	Active.	
+What is an Incident Tag used for?	To logically group, label, or categorize incidents (e.g., &quot;PhishingCampaign&quot;) for easier filtering and tracking.	
+What happens when you suppress an alert?	It stops similar alerts from triggering in the future based on specific conditions you define, which is useful for filtering out known benign activity.	
+"How can you investigate Entra ID authentication logs if you don&#x27;t use Defender XDR Advanced Hunting?"	By querying the SigninLogs table in a connected Log Analytics Workspace via Microsoft Sentinel.	
+Which portal section helps you track device health, vulnerable devices, and firewall blocks?	The Reports section.	
+What is Automated Investigation and Response (AIR) in Defender for Office 365?	A set of automated playbooks triggered by alerts or manually to investigate entities, evaluate threat scope, and execute remediation actions.	
+What core entities are analyzed during a Defender for Office 365 AIR investigation?	Emails, URLs, users (and their activities), and devices.	
+What common AIR remediation actions require manual approval in the Action Center?	Soft deleting email messages or clusters, blocking URLs (time-of-click), turning off external mail forwarding, and turning off delegation.	
+How does Safe Links URL detonation handle URLs weaponized after email delivery?	It detonates the URL at time-of-click and can trigger an automated AIR playbook to resolve the threat and remediate affected mailboxes.	
+What is the purpose of Microsoft Defender for Office 365 Safe Attachments?	To provide zero-day protection by detonating unknown attachments in a virtual sandbox environment using machine learning before delivery.	
+What are the five action options for unknown malware in Safe Attachments policies?	Off, Monitor, Block, Replace, and Dynamic delivery.	
+What does the &quot;Dynamic delivery&quot; option in a Safe Attachments policy do?	It immediately delivers the email body to the recipient while scanning the attachment, reattaching it once verified as safe.	
+Which Exchange mail flow header is used to bypass Safe Attachments scanning?	X-MS-Exchange-Organization-SkipSafeAttachmentProcessing	
+What is the primary function of Safe Links in Microsoft Defender for Office 365?	To provide time-of-click URL rewriting and dynamic protection across emails, Office documents, and Microsoft Teams.	
+Which Exchange mail flow header is used to bypass Safe Links processing?	X-MS-Exchange-Organization-SkipSafeLinksProcessing	
+What happens when &quot;Use Safe Attachments to scan downloadable content&quot; is enabled in a Safe Links policy?	If a clicked URL points to a hosted file (e.g., PDF), the file is downloaded and analyzed in a sandbox environment before the user can open it.	
+Why does Microsoft recommend leaving &quot;Do not track when users click safe links&quot; UNSELECTED in Safe Links policies?	To ensure user click data for rewritten URLs is logged and available for security auditing and investigation.	
+What is the difference between domain impersonation and email spoofing in Defender for Office 365?	Impersonation uses lookalike domain names or usernames (e.g., ćóntoso.com), whereas spoofing directly forges the actual domain in the email headers.	
+Is there a default pre-configured Defender for Office 365 anti-phishing policy out of the box?	No, default policies only configure basic targeting	
+What is the Phishing Triage Agent in Microsoft Defender?	An AI agent powered by Security Copilot that uses LLM-based contextual reasoning to autonomously classify user-reported phishing submissions.	
+What product prerequisites are required to run the Phishing Triage Agent?	Security Copilot (provisioned SCU capacity) and Microsoft Defender for Office 365 Plan 2.	
+Which built-in alert tuning rule MUST be disabled before setting up the Phishing Triage Agent?	Disable the &quot;Auto-Resolve - Email reported by user as malware or phish&quot; rule.	
+What is the recommended identity type when setting up the Phishing Triage Agent?	A newly created Microsoft Entra Agent ID (to keep access scoped, secure, and dedicated).	
+What permission requirement applies to the user group monitoring the Phishing Triage Agent?	The monitoring group must have equal or higher permissions than the agent identity itself to oversee its output.	
+How does the Phishing Triage Agent handle True Positive phishing alerts?	It marks the alert as True Positive and keeps the associated incident OPEN for analyst prioritization and action.	
+How does the Phishing Triage Agent handle False Positive phishing alerts?	It classifies the alert as a False Positive and automatically resolves the alert.	
+What incident tag is automatically added when the Phishing Triage Agent begins working?	The &quot;Agent&quot; tag.	
+"How can analysts teach and refine the Phishing Triage Agent&#x27;s accuracy over time?"	By updating the alert classification on an incident and selecting &quot;Use this feedback to teach the agent&quot; to store a lesson in its memory.	
+How many times can an analyst provide feedback to teach the Phishing Triage Agent for a single alert?	Only once per alert.	
+What is Threat Explorer (Real-time detections) in Defender for Office 365?	A real-time reporting tool to analyze recent email threats, targeted users, delivery actions, and specific filtering technologies (e.g., EOP vs sandboxing).	
+What Defender for Office 365 feature allows security teams to run simulated spear-phishing and credential harvest campaigns?	Attack Simulation Training (Attack Simulator).	
+What are Threat Trackers in Microsoft Defender for Office 365?	Intelligence feeds providing actionable data on prevailing cybersecurity issues (includes Noteworthy, Trending, Tracked, and Saved queries).	
+What Entra ID license is required to use Microsoft Entra Identity Protection risk policies and full security reports?	Microsoft Entra ID Premium P2.	
+What tasks can a user with the Security Operator role perform in Entra Identity Protection?	View reports, dismiss user risk, confirm safe sign-in, and confirm compromise (cannot reset passwords, configure policies, or configure alerts).	
+What tasks can a Security Administrator perform that a Security Operator cannot in Identity Protection?	Configure or change risk policies, configure alerts, and reset user passwords.	
+What is the difference between a User Risk Policy and a Sign-in Risk Policy?	A User Risk Policy targets account compromise probability (atypical behavior over time)	
+"What is Microsoft&#x27;s recommended threshold setting for User Risk vs Sign-in Risk policies?"	User Risk Policy: High threshold (require password change). Sign-in Risk Policy: Medium and above threshold (require MFA).	
+What prerequisites must users meet to self-remediate when flagged by an Identity Protection risk policy?	They must be pre-registered for both Self-Service Password Reset (SSPR) and Multifactor Authentication (MFA).	
+What are the data retention periods and CSV export limits for Risky Users / Risky Sign-ins versus Risk Detections?	Risky Users / Sign-ins: 30 days retention, max 2,500 export records. Risk Detections: 90 days retention, max 5,000 export records.	
+What happens to active risk detections when an administrator selects &quot;Dismiss user risk&quot;?	All active risk events for the user are closed and user risk level drops, but the password remains unchanged (account is not explicitly reset to a safe credential state).	
+Which three Microsoft Graph APIs expose information about risky users and sign-ins?	riskDetection, riskyUsers, and signIn (or signIns).	
+Which Application permissions are required to query Identity Protection risk detections and risky users via Microsoft Graph API?	IdentityRiskEvent.Read.All and IdentityRiskyUser.Read.All.	
+How do you query Microsoft Graph for risk detections that occurred offline?	"GET https://graph.microsoft.com/v1.0/identityProtection/riskDetections?$filter=detectionTimingType eq &#x27;offline&#x27;"	
+Which workload identity types are in scope for Conditional Access risk policies in Entra ID Protection?	Single-tenant service principals registered in your tenant (third-party SaaS, multi-tenant apps, and managed identities are out of scope).	
+Where can Microsoft Defender for Identity sensors be directly installed?	Directly on Domain Controllers and Active Directory Federated Services (AD FS) servers.	
+What minimum license and capacity prerequisites are required for the Identity Risk Management Agent?	Microsoft Entra ID Premium P2 license and provisioned Security Compute Units (SCUs).	
+Which role is required to activate the Identity Risk Management Agent and execute suggested remediation actions?	Security Administrator (Security Readers and Global Readers can view suggestions but cannot take actions).	
+Does the Identity Risk Management Agent consume SCUs when initially scanning for &quot;At risk&quot; users?	No, SCUs are only consumed when generating findings, risk summaries, remediation suggestions, or processing agent chat.	
+What trigger frequency options are available for running the Identity Risk Management Agent?	Continuous monitoring (every 5 minutes), Daily trigger, or Manual run.	
+What is the default user scope and lookback timeframe for the Identity Risk Management Agent scan?	The most recent 100 risky users within the last 90 days.	
+What remediation actions can be executed directly from Identity Risk Management Agent suggestions?	Dismiss risk and Reset password.	
+What verdict classifications does the Identity Risk Management Agent output for a risky user?	Compromised or Not compromised.	
+What is the primary purpose of Microsoft Defender for Identity (MDI)?	To monitor on-premises Active Directory and hybrid identity signals to identify advanced threats, compromised identities, and malicious insider actions.	
+What are the three main deployment modes for Microsoft Defender for Identity sensors?	Domain Controller Sensor (installed directly), Standalone Sensor (requires port mirroring), and AD FS / AD CS / Entra Connect Sensors.	
+How does the MDI sensor handle domain controller network traffic to conserve bandwidth?	It captures and parses raw network packets locally and sends only filtered metadata and parsed events to the MDI cloud service.	
+If you deploy an MDI Standalone Sensor on a dedicated server, what network configuration is mandatory?	"Port Mirroring must be configured to forward domain controller network traffic to the standalone sensor&#x27;s network adapter."	
+What specific account configuration is required for MDI to read Active Directory user and device metadata?	A Directory Service Account (DSA), which is highly recommended to be configured as a Group Managed Service Account (gMSA).	
+Which Active Directory server role must be included in the MDI monitored servers list to resolve objects across different domains in a forest?	At least one Global Catalog server.	
+How can you quickly validate that an MDI sensor is successfully capturing domain traffic?	Run an `nslookup` query against the monitored DC from a joined device, then verify the `MdiDnsQuery` action appears in the Defender portal device timeline.	
+What is the local Windows service name for the Microsoft Defender for Identity sensor on a Domain Controller?	Azure Advanced Threat Protection sensor.	
+In the context of MDI, what type of attack is indicated by suspicious LDAP enumeration queries?	Reconnaissance.	
+What phase of the cyber-attack kill-chain do Pass-the-Ticket (PtT) and Pass-the-Hash (PtH) attacks belong to in MDI alerts?	Lateral Movement.	
+What phase of the cyber-attack kill-chain do DCShadow, DCSync, and Golden/Silver Ticket attacks belong to in MDI alerts?	Domain Dominance.	
+If an organization adds a new Read-Only Domain Controller (RODC) but does not install an MDI sensor on it, what is the security impact?	MDI will have a monitoring blind spot	
+Where are Microsoft Defender for Identity posture assessments and configuration weaknesses directly reflected?	In Microsoft Secure Score.	
+Which third-party Privileged Access Management (PAM) and identity providers natively integrate with Microsoft Defender for Identity?	CyberArk, Delinea, BeyondTrust, and Okta.	
+Does Microsoft Defender for Identity natively integrate with Microsoft Intune for identity alert correlation?	No, it natively integrates with Defender for Endpoint, Defender for Cloud Apps, and Security Copilot (Intune is not a direct identity integration).	
+What specific MDI feature visually maps out how an attacker could traverse an environment to reach sensitive accounts?	Lateral Movement Paths (LMP).	
+What is the primary role of Microsoft Defender for Cloud Apps (MDCA)?	It acts as a Cloud Access Security Broker (CASB) intermediary to apply monitoring and security controls over cloud services and combat Shadow IT.	
+How does MDCA Cloud Discovery calculate the risk score for a discovered cloud app?	It analyzes traffic logs against a catalog of 16,000+ apps using over 80 risk factors, assigning a risk score between 1 and 10.	
+How are apps flagged as &quot;Unsanctioned&quot; in MDCA automatically blocked on user devices?	Through native integration with Microsoft Defender for Endpoint. (Without MDE, a block script must be generated for network firewalls/appliances).	
+What Microsoft Entra ID feature must be configured to route user traffic to MDCA for real-time monitoring and control?	Conditional Access (specifically, routing the session via Conditional Access App Control).	
+What are three common real-time actions you can enforce using Conditional Access App Control session policies?	Prevent data exfiltration (block download/copy), protect on download (force AIP labels), and block upload of unlabeled files.	
+Which MDCA policy type scans data at rest in connected cloud apps to apply governance actions like quarantining files or changing sharing permissions?	File Policy.	
+What is the specific governance action name in a File Policy to hide a sensitive file from users while an administrator reviews it?	Put in admin quarantine.	
+How long is the initial learning period for MDCA to establish a behavioral baseline for its UEBA anomaly detection policies?	7 days.	
+"What type of MDCA anomaly detection alert triggers when a user&#x27;s credentials are used from two geographically distant locations faster than physical travel allows?"	Impossible travel.	
+In MDCA anomaly detection tuning, how does setting a policy to &quot;High&quot; sensitivity affect alert suppression?	Only System-level suppressions are applied (Tenant and User-level suppressions are ignored, resulting in the strictest alerting).	
+What must be enabled in MDCA to natively classify and protect files using Azure Information Protection (AIP) / Microsoft Purview labels?	The Microsoft 365 app connector.	
