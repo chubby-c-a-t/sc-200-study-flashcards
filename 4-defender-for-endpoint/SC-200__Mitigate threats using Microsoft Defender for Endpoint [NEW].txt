@@ -1,0 +1,71 @@
+#separator:tab
+#html:true
+#tags column:3
+What is Microsoft Defender for Endpoint (MDE)?	A platform that helps organizations prevent, detect, investigate, and respond to endpoint threats.	MDE
+What three core technologies power Microsoft Defender for Endpoint?	Endpoint behavioral sensors, cloud security analytics, and threat intelligence.	MDE
+What is the purpose of endpoint behavioral sensors?	To collect and send operating system behavioral signals to Defender for Endpoint.	MDE
+What is the purpose of cloud security analytics?	To use machine learning and threat intelligence to generate detections, insights, and response recommendations.	MDE
+What is the purpose of Microsoft threat intelligence in Defender for Endpoint?	To identify attacker tools, techniques, and procedures (TTPs).	MDE
+What is Threat and Vulnerability Management (TVM)?	A capability that discovers, assesses, prioritizes, and helps remediate vulnerabilities and misconfigurations.	MDE TVM
+What is a key benefit of TVM?	It provides continuous vulnerability assessment without requiring periodic scans.	MDE TVM
+What is the primary purpose of Attack Surface Reduction (ASR)?	To reduce opportunities for attackers by hardening devices and blocking common attack techniques.	ASR MDE
+What feature helps protect important folders from ransomware?	Controlled Folder Access.	ASR MDE
+What ASR feature extends SmartScreen protections beyond Microsoft Edge?	Network Protection.	ASR MDE
+What is the purpose of Microsoft Defender Antivirus?	To provide next-generation antimalware protection.	AV MDE
+What Defender Antivirus capability improves detection of emerging threats?	Cloud-delivered protection.	AV MDE
+What is Endpoint Detection and Response (EDR)?	A capability that detects, investigates, and responds to advanced attacks using behavioral telemetry.	EDR MDE
+What is the difference between an alert and an incident in Defender for Endpoint?	An alert represents suspicious activity; an incident correlates related alerts into a single investigation.	Investigations MDE
+What is the purpose of Automated Investigation and Remediation (AIR)?	To automatically investigate alerts and perform remediation actions.	AIR MDE
+Why is AIR important?	It reduces analyst workload and alert volume.	AIR MDE
+What is Advanced Hunting used for?	To proactively search endpoint telemetry for threats.	Hunting MDE
+Which query language is used by Advanced Hunting?	Kusto Query Language (KQL).	Hunting MDE
+What KQL operator filters rows matching a condition?	where	Hunting MDE
+What KQL operator aggregates data?	summarize	Hunting MDE
+What KQL operator combines multiple tables?	join	Hunting MDE
+What KQL operator returns selected columns?	project	Hunting MDE
+What KQL operator creates calculated columns?	extend	Hunting MDE
+What KQL best practice improves performance?	Apply time and other filters early in the query.	Hunting MDE
+Which KQL keyword is generally more efficient than contains when matching full tokens?	has	Hunting MDE
+When joining tables, which table should generally be placed on the left side?	The table with fewer rows.	Hunting MDE
+What capability allows analysts to create detections from hunting queries?	Advanced Hunting custom detection rules.	Hunting MDE
+An analyst wants to identify unmanaged devices connected to the corporate network. Which MDE capability should they use?	Device Discovery.	MDE Scenario
+A newly onboarded device has been configured. What should be done next?	Run a detection test and verify reporting.	MDE Scenario
+Why would an organisation use RBAC in Defender for Endpoint?	To control what users can view and what actions they can perform.	Administration MDE
+What is the purpose of a Device Group?	To organise devices and control visibility, permissions, and remediation settings.	Administration MDE
+A security analyst needs to remotely investigate a compromised endpoint. Which feature should they use?	Live Response.	MDE Response
+What does EDR in Block Mode provide?	Protection and remediation of malicious artifacts even when Defender Antivirus runs in passive mode.	MDE Response
+What is Tamper Protection designed to prevent?	Unauthorized changes to Defender security settings.	MDE Protection
+Why integrate Defender for Identity with Defender for Endpoint?	To correlate identity and endpoint investigations.	Integration MDE
+Why integrate Intune with Defender for Endpoint?	To support device risk-based Conditional Access decisions.	Integration MDE
+What feature allows administrators to create allow or block rules for domains, URLs, and IP addresses?	Custom Network Indicators.	MDE Protection
+What is the purpose of Web Content Filtering?	To block unwanted website categories and monitor web activity.	MDE Protection
+Why should Global Administrator not be used for routine MDE administration?	Microsoft recommends using the least-privileged role necessary.	Administration MDE
+Why should SOC analysts understand ASR?	ASR events often appear as security controls and investigative evidence.	ASR MDE
+What are ASR rules designed to stop?	Common attacker techniques and risky application behavior.	ASR MDE
+Which ASR component uses virtualization-based security?	Hardware-based Isolation.	ASR MDE
+Which ASR component requires applications to earn trust before they run?	Application Control.	ASR MDE
+Which ASR component protects against exploits targeting operating systems and applications?	Exploit Protection.	ASR MDE
+Which ASR component monitors removable media such as USB devices?	Device Control.	ASR MDE
+What are the four possible states of an ASR rule?	Not Configured, Block, Audit, and Warn.	ASR MDE
+Why is Audit mode recommended before Block mode?	To identify business impact and required exclusions.	ASR MDE
+What does Warn mode do?	Blocks the action but allows the user to bypass protection.	ASR MDE
+Which ASR rule helps prevent LSASS credential theft?	Block credential stealing from lsass.exe.	ASR MDE
+Which ASR rule helps protect against ransomware?	Use advanced protection against ransomware.	ASR MDE
+Can files and folders be excluded from ASR evaluation?	Yes.	ASR MDE
+What is the difference between Device Risk Level and Device Exposure Level?	Risk Level reflects active threats; Exposure Level reflects vulnerabilities and security recommendations.	Investigation MDE
+What device health state indicates a device has not reported for more than seven days?	Inactive.	Investigation MDE
+What is event flagging used for in the Device Timeline?	To highlight and track events during investigations.	Investigation MDE
+What does Hunt for Related Events do?	Runs an Advanced Hunting query for related activity.	Investigation MDE
+What is Client Behavioral Blocking?	A capability that uses cloud analysis and machine learning to automatically block malicious behavior.	MDE Protection
+What is Feedback-Loop Blocking (Rapid Protection)?	A capability that rapidly shares malware verdicts across devices.	MDE Protection
+What is the difference between Basic Discovery and Standard Discovery?	Basic uses passive discovery; Standard uses passive plus active probing.	Discovery MDE
+What does the onboarding status &quot;Can be onboarded&quot; mean?	The device is supported by Defender for Endpoint but is not onboarded.	Discovery MDE
+What is the difference between Isolate Device and Contain Device?	Isolate disconnects a managed device; Contain blocks communication with an unmanaged discovered device.	MDE Response
+When should Contain Device be used?	When a suspicious unmanaged device is discovered on the network.	MDE Response
+What is Restrict App Execution used for?	To prevent applications from running on a compromised endpoint.	MDE Response
+Why collect an Investigation Package?	To gather forensic artifacts for deeper analysis.	MDE Response
+Which artifact helps identify persistence mechanisms?	Autoruns data.	Forensics MDE
+Which artifact helps identify command-and-control activity or lateral movement?	Network Connections data.	Forensics MDE
+Which artifact may reveal evidence of recently executed malware?	Prefetch files.	Forensics MDE
+What is Live Response?	A secure remote shell used to investigate and respond to endpoint threats.	MDE Response
+What actions can be performed through Live Response?	Run commands, execute scripts, collect files, upload tools, and perform remediation.	MDE Response
