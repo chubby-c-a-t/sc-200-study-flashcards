@@ -1,0 +1,44 @@
+#separator:tab
+#html:true
+#tags column:3
+What are the two primary pillars of Microsoft Defender for Cloud?	Cloud Security Posture Management (CSPM) and Cloud Workload Protection (CWP).	Cloud Defender for
+What is Secure Score and how is it improved?	A measurement of security posture that improves when recommendations are remediated and resources become compliant.	Cloud Defender for
+How does Defender for Cloud extend protection to non-Azure virtual machines?	By onboarding them through Azure Arc.	Cloud Defender for
+What feature helps limit exposure to brute-force attacks on management ports?	Just-in-time (JIT) VM access.	Cloud Defender for
+Which feature automatically creates application allowlists for Windows servers?	Adaptive Application Controls.	Cloud Defender for
+What underlying Azure service is used to evaluate and enforce Defender for Cloud security controls?	Azure Policy.	Cloud Defender for
+What is the purpose of Asset Inventory?	To provide a centralized view of resources, posture, and security recommendations.	Cloud Defender for
+Why is Auto Provisioning used?	To automatically deploy required security agents and extensions.	Cloud Defender for
+Which agent replaced the retired Log Analytics Agent?	Azure Monitor Agent (AMA).	Cloud Defender for
+What is the purpose of Azure Monitor Agent (AMA)?	To collect monitoring and security data using Data Collection Rules.	Cloud Defender for
+What happens when Defender for Endpoint auto provisioning is enabled?	The Defender for Endpoint sensor is automatically deployed to eligible machines.	Cloud Defender for
+What is Direct Onboarding?	A method of connecting non-Azure servers through Defender for Endpoint without Azure Arc.	Cloud Defender for
+What is a key limitation of Direct Onboarding compared to Azure Arc onboarding?	It lacks Azure management capabilities such as Azure Policy and extensions.	Cloud Defender for
+What is Azure Arc primarily used for?	Managing on-premises, multicloud, and non-Azure resources as Azure resources.	Cloud Defender for
+What is the recommended onboarding method for non-Azure servers?	Azure Arc-enabled servers.	Cloud Defender for
+What is the difference between Azure Arc and AWS/GCP cloud connectors?	Azure Arc manages individual resources, while cloud connectors integrate entire AWS or GCP environments.	Cloud Defender for
+What benefits are gained from connecting AWS or GCP environments to Defender for Cloud?	Centralized visibility, recommendations, Secure Score integration, and security posture management.	Cloud Defender for
+What is the relationship between policies, initiatives, and recommendations in Defender for Cloud?	Policies evaluate requirements, initiatives group policies, and noncompliant policies generate recommendations.	Cloud Defender for
+What are security controls in Defender for Cloud?	Logical groups of related recommendations representing a specific attack surface.	Cloud Defender for
+How are industry and regulatory standards represented in Defender for Cloud?	As Azure Policy initiatives displayed in the Regulatory Compliance dashboard.	Cloud Defender for
+What is the purpose of the Regulatory Compliance dashboard?	To measure and track compliance against standards such as NIST, PCI-DSS, ISO 27001, and CIS.	Cloud Defender for
+What are Workbooks used for?	To create interactive visualizations and reports.	Cloud Defender for
+What additional scanning capabilities are included in Defender for Servers Plan 2?	Agentless vulnerability scanning, malware scanning, and machine secrets scanning.	Cloud Defender for
+How is DNS threat protection provided since Defender for DNS was retired?	It is included within Defender for Servers Plan 2.	Cloud Defender for
+How does Defender for Storage identify uploaded malware?	By using storage telemetry and hash reputation analysis.	Cloud Defender for
+Which log source should be reviewed when investigating Defender for Resource Manager alerts?	Azure Activity Log.	Cloud Defender for
+What are the three pillars of Defender for Containers?	Environment hardening, vulnerability assessment, and runtime threat protection.	Cloud Defender for
+What must be installed to enforce Kubernetes security policies?	Azure Policy for Kubernetes.	Cloud Defender for
+True or False: Defender for Azure Cosmos DB directly inspects stored database content.	False. It analyzes service telemetry rather than stored data.	Cloud Defender for
+What is the difference between an alert and an incident in Defender for Cloud?	An alert is a single threat detection, while an incident is a collection of correlated alerts created through Cloud Smart Alert Correlation.	Cloud Defender for
+What three analytics methods are used to detect threats in Defender for Cloud?	Threat intelligence, behavioral analytics, and anomaly detection.	Cloud Defender for
+What is behavioral analytics?	The use of machine learning and known attack patterns to identify compromised resources.	Cloud Defender for
+What is anomaly detection?	The use of deployment-specific baselines to identify unusual activity.	Cloud Defender for
+What does a High severity alert indicate?	A high probability of compromise requiring immediate investigation.	Cloud Defender for
+Why are MITRE ATT&amp;CK tactics included with security alerts?	To help identify the attack stage and guide investigations.	Cloud Defender for
+What can automate responses to alerts and recommendations?	Azure Logic Apps through Workflow Automation.	Cloud Defender for
+Which events can trigger Workflow Automation?	Security alerts and security recommendations.	Cloud Defender for
+What is a suppression rule used for?	To automatically dismiss future alerts that match defined criteria.	Cloud Defender for
+What happens when an alert matches a suppression rule?	It is generated but automatically marked as Dismissed.	Cloud Defender for
+What is the purpose of a Threat Intelligence Report?	To provide attacker information, IoCs, campaigns, tactics, and remediation guidance.	Cloud Defender for
+What are the three types of Threat Intelligence Reports?	Activity Group Report, Campaign Report, and Threat Summary Report.	Cloud Defender for
