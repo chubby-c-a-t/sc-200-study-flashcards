@@ -1,0 +1,86 @@
+#separator:tab
+#html:true
+#tags column:3
+Write KQL to return failed Windows logons from the last 24 hours.	SecurityEvent<br>| where TimeGenerated > ago(1d)<br>| where EventID == 4625	KQL::Write
+Write KQL to return successful and failed Windows logons from the last 24 hours.	SecurityEvent<br>| where TimeGenerated > ago(1d)<br>| where EventID in (4624, 4625)	KQL::Write
+Write KQL to return only TimeGenerated, Account, Computer, and EventID.	| project TimeGenerated, Account, Computer, EventID	KQL::Write
+Write KQL to sort events from newest to oldest.	| order by TimeGenerated desc	KQL::Write
+Write KQL to find accounts containing the token admin, case-insensitively.	"| where Account has ""admin"""	KQL::Write
+Write KQL to perform a case-insensitive exact match for AccountType user.	"| where AccountType =~ ""user"""	KQL::Write
+Write KQL to exclude Event ID 4688.	| where EventID != 4688	KQL::Write
+Write KQL to find Event IDs 4624, 4625, or 4672.	| where EventID in (4624, 4625, 4672)	KQL::Write
+Write KQL to create a seven-day lookback variable and use it against SecurityEvent.	let lookback = 7d;<br>SecurityEvent<br>| where TimeGenerated > ago(lookback)	KQL::Let
+Write KQL to declare Event ID 4688 as discardEventId and exclude it.	let discardEventId = 4688;<br>SecurityEvent<br>| where EventID != discardEventId	KQL::Let
+Write KQL to search every table and column for err.	"search ""err"""	KQL::Search
+Write KQL to search SecurityEvent and SecurityAlert for err.	"search in (SecurityEvent, SecurityAlert) ""err"""	KQL::Search
+Write KQL to create UserLower from Account.	| extend UserLower = tolower(Account)	KQL::Transform
+Write KQL to remove ProcessName from the output.	| project-away ProcessName	KQL::Project
+Write KQL to rename Account as Username.	| project-rename Username = Account	KQL::Project
+Write KQL to count failed logons by account.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account	KQL::Summarize
+Write KQL to show accounts with more than 10 failed logons.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account<br>| where FailedLogons > 10	KQL::Summarize
+Write KQL to show the 10 accounts with the most failed logons.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account<br>| top 10 by FailedLogons desc	KQL::Summarize
+Write KQL to count failed logons per account in one-hour bins.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account, bin(TimeGenerated, 1h)	KQL::Time
+Write KQL to return the earliest and latest event time per account.	SecurityEvent<br>| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated) by Account	KQL::Summarize
+Write KQL to count distinct computers used by each account.	SecurityEvent<br>| summarize ComputerCount = dcount(Computer) by Account	KQL::Summarize
+Write KQL to build a set of computers seen for each account.	SecurityEvent<br>| summarize Computers = make_set(Computer) by Account	KQL::Summarize
+Write KQL to keep the newest record for each account.	SecurityEvent<br>| summarize arg_max(TimeGenerated, *) by Account	KQL::Summarize
+Write KQL to keep the oldest record for each account.	SecurityEvent<br>| summarize arg_min(TimeGenerated, *) by Account	KQL::Summarize
+Write KQL to count successful and failed logons separately by account.	SecurityEvent<br>| where EventID in (4624, 4625)<br>| summarize Successful = countif(EventID == 4624), Failed = countif(EventID == 4625) by Account	KQL::Summarize
+Complete the syntax to filter to the last 30 minutes: TimeGenerated ___ ago(30m).	>	KQL::Complete
+Fix this KQL: SecurityEvent | where EventID = 4625	SecurityEvent<br>| where EventID == 4625	KQL::Fix
+Fix this KQL variable sequence: let lookback = 1d | SecurityEvent | where TimeGenerated > ago(lookback)	let lookback = 1d;<br>SecurityEvent<br>| where TimeGenerated > ago(lookback)	KQL::Fix
+Why does a let statement require a semicolon before the next statement?	The semicolon terminates the let statement. The following tabular expression starts as a separate statement.	KQL::Essential
+Write a datatable containing Administrator and NT AUTHORITY\SYSTEM, then filter SecurityEvent against it.	"let suspiciousAccounts = datatable(Account:string)<br>[<br>  ""Administrator"",<br>  @""NT AUTHORITY\SYSTEM""<br>];<br>SecurityEvent<br>| where Account in (suspiciousAccounts)"	KQL::Let
+Write KQL to filter events between seven days ago and one day ago.	| where TimeGenerated > ago(7d) and TimeGenerated < ago(1d)	KQL::Time
+Write KQL to find non-empty Account values.	| where isnotempty(Account)	KQL::Filter
+Write KQL to find empty or null Account values.	| where isempty(Account)	KQL::Filter
+Write KQL to replace an empty Account with Unknown in DisplayAccount.	"| extend DisplayAccount = iff(isempty(Account), ""Unknown"", Account)"	KQL::Transform
+Write KQL to parse a JSON string in AdditionalFields into Parsed.	| extend Parsed = parse_json(AdditionalFields)	KQL::Transform
+Write KQL to convert EventID to a string in EventIDText.	| extend EventIDText = tostring(EventID)	KQL::Transform
+Write KQL to split Account on a backslash into a dynamic array.	"| extend AccountParts = split(Account, ""\\"")"	KQL::Strings
+Write KQL to extract the username after the backslash from DOMAIN\user.	"| extend Username = tostring(split(Account, ""\\"")[1])"	KQL::Strings
+Write KQL to combine Account and Computer into AccountAtComputer.	"| extend AccountAtComputer = strcat(Account, ""@"", Computer)"	KQL::Strings
+Write KQL to return 20 sample rows after filtering failed logons.	SecurityEvent<br>| where EventID == 4625<br>| take 20	KQL::Write
+Write KQL to return unique account names.	SecurityEvent<br>| distinct Account	KQL::Write
+Write KQL to return the five most recent failed logons.	SecurityEvent<br>| where EventID == 4625<br>| top 5 by TimeGenerated desc	KQL::Write
+Write KQL to compare failed logons with privileged logons by account using an inner join.	let Failed = SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account;<br>let Privileged = SecurityEvent<br>| where EventID == 4672<br>| distinct Account;<br>Failed<br>| join kind=inner Privileged on Account	KQL::Join
+What does this return? SecurityEvent | summarize Events=count() by Account	One row per Account with the number of SecurityEvent records in Events.	KQL::Read
+What does this return? SecurityEvent | summarize arg_max(TimeGenerated, *) by Computer	The most recent SecurityEvent row for each computer.	KQL::Read
+"What does this return? SecurityEvent | where Account contains ""admin"""	Rows where Account contains the character sequence admin, including inside longer strings.	KQL::Read
+When matching a whole indexed term such as powershell, which syntax is generally preferable to contains?	"| where ProcessCommandLine has ""powershell"""	KQL::Filter
+Write KQL to find command lines containing encodedcommand as a substring.	"| where CommandLine contains ""encodedcommand"""	KQL::Strings
+Write KQL to find Process values beginning with powershell.	"| where Process startswith ""powershell"""	KQL::Strings
+Write KQL to find FileName values ending with .exe.	"| where FileName endswith "".exe"""	KQL::Strings
+Write KQL to calculate failed-logon percentage by account.	SecurityEvent<br>| where EventID in (4624, 4625)<br>| summarize Total=count(), Failed=countif(EventID == 4625) by Account<br>| extend FailedPercent = round(100.0 * Failed / Total, 2)	KQL::Hunting
+Write KQL to show only Account, Failed, Total, and FailedPercent.	| project Account, Failed, Total, FailedPercent	KQL::Project
+Write KQL to chart failed logons over time in one-hour bins.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons=count() by bin(TimeGenerated, 1h)<br>| render timechart	KQL::Visualise
+Write KQL to find accounts active on more than five distinct computers.	SecurityEvent<br>| summarize ComputerCount=dcount(Computer) by Account<br>| where ComputerCount > 5	KQL::Hunting
+Write KQL to find failed logons where Account is not empty, with busiest accounts first.	SecurityEvent<br>| where EventID == 4625<br>| where isnotempty(Account)<br>| summarize FailedLogons=count() by Account<br>| order by FailedLogons desc	KQL::Hunting
+Complete the query: SecurityEvent | summarize EventCount=count() ___ Account	by	KQL::Complete
+Complete the query: SecurityEvent | ___ UserLower=tolower(Account)	extend	KQL::Complete
+Complete the query: SecurityEvent | ___ TimeGenerated, Account, Computer	project	KQL::Complete
+Complete the query: SecurityEvent | ___ EventID in (4624, 4625)	where	KQL::Complete
+"Replace this broad search with targeted KQL: search ""4625"""	SecurityEvent<br>| where EventID == 4625	KQL::Fix
+Write a complete query for failed logons in the last day, grouped by account, counts above 10, highest first.	SecurityEvent<br>| where TimeGenerated > ago(1d)<br>| where EventID == 4625<br>| summarize FailedLogons=count() by Account<br>| where FailedLogons > 10<br>| order by FailedLogons desc	KQL::Hunting
+Write KQL to build a dynamic JSON array of all Accounts seen on each computer, including duplicate entries.	SecurityEvent<br>| summarize Accounts = make_list(Account) by Computer	KQL::Summarize
+What is the functional difference between make_list() and make_set() in KQL?	make_list() includes duplicate values in the generated dynamic array, whereas make_set() returns only distinct/unique values.	KQL::Essential
+Write KQL to calculate the average CPU utilization (CounterValue) for each computer from the Perf table.	Perf<br>| summarize AvgCPU = avg(CounterValue) by Computer	KQL::Summarize
+Write KQL to calculate the standard deviation of failed logons per computer.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedCount = count() by Computer, bin(TimeGenerated, 1h)<br>| summarize StdDevFailed = stdev(FailedCount) by Computer	KQL::Summarize
+Write KQL to estimate the 95th percentile of process execution duration (Duration) per Process.	SecurityEvent<br>| summarize P95 = percentile(Duration, 95) by Process	KQL::Summarize
+Write KQL to render total failed logons per computer as a horizontal bar chart.	SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Computer<br>| render barchart	KQL::Visualise
+Write KQL to render security incident counts by day as a vertical column chart.	SecurityIncident<br>| summarize IncidentCount = count() by bin(CreatedTime, 1d)<br>| render columnchart	KQL::Visualise
+What is the difference between these two queries?<br>1) SecurityEvent | summarize arg_max(TimeGenerated, *) by Account | where EventID == 4624<br>2) SecurityEvent | where EventID == 4624 | summarize arg_max(TimeGenerated, *) by Account	Query 1 finds the overall most recent event per account and checks if that latest event was a logon.<br>Query 2 filters to logon events first and finds the most recent logon for each account.	KQL::Read
+Write KQL to return rows from all tables whose names start with Security.	union Security*	KQL::Union
+Write KQL to union all tables starting with Security and add a column named SourceTable indicating which table the row originated from.	union withsource=SourceTable Security*	KQL::Union
+When using the KQL union operator on two tables, do the tables need to have matching schema/columns?	No. Columns that exist in one table but not the other will simply contain null values for the rows where that column doesn't exist.	KQL::Union
+When using the KQL join operator on two tables, how do you explicitly reference columns from each table to distinguish them?	Use $left.ColumnName and $right.ColumnName.	KQL::Join
+In a KQL join, what is the primary difference between kind=inner and kind=leftouter?	kind=inner returns a row only if there is a match in BOTH tables. kind=leftouter returns ALL rows from the left table, even if there is no match on the right (unmatched right cells are filled with nulls).	KQL::Join
+Which KQL join flavor is used to return only the records from the left table that do NOT have a match in the right table (e.g., finding devices that have NOT reported a heartbeat)?	kind=leftanti (or kind=leftantisemi)	KQL::Join
+"Write KQL to extract the first regex capture group from a field named RawData using the pattern ""x=([0-9]+)""."	"| extend ExtractedValue = extract(""x=([0-9]+)"", 1, RawData)"	KQL::Strings
+Write KQL to parse a string field named EventText to extract a string variable 'lockTime' and a long variable 'sliceNumber' from a structured message.	"| parse EventText with * ""sliceNumber="" sliceNumber:long * ""lockTime="" lockTime "","" *"	KQL::Transform
+Write KQL to access the operatingSystem property directly from a dynamic JSON field named DeviceDetail.	| extend OS = DeviceDetail.operatingSystem	KQL::Transform
+Which KQL operator is used to expand a dynamic-typed array into separate rows, duplicating the values of all other columns for each new row?	mv-expand	KQL::Transform
+Which KQL operator is used to apply a subquery to each value within a dynamic array and return the union of the results?	mv-apply	KQL::Transform
+Write KQL to query an external text file from a storage blob URL, defining a single string column named UserID.	"externaldata(UserID:string) [<br>  @""https://storageaccount.blob.core.windows.net/storagecontainer/users.txt""<br>]"	KQL::External
+How do you create a reusable parser (virtual table) from a KQL query in Microsoft Sentinel?	"Select ""Save"" > ""Save As Function"" in the Logs window. The function name can then be queried directly like a standard table."	KQL::Essential
+In Microsoft Sentinel, what are the pre-built, Microsoft-maintained functions used to normalize data from different log sources into a common schema called?	Advanced Security Information Model (ASIM) parsers.	KQL::Essential
