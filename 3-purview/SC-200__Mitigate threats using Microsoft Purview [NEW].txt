@@ -1,46 +1,19 @@
 #separator:tab
 #html:true
 #tags column:3
-What is the primary purpose of a DLP alert?	To notify analysts when activity matches a DLP policy condition set up to indicate when sensitive data could have been shared to a location that is not a regular part of an organisations agreed upon operations and therefore a potential security issue.	DLP Purview
-Which portal is primarily used to review and tune DLP policies?	Microsoft Purview.	DLP Purview
-Which portal is primarily used to investigate DLP alerts as part of a larger security incident?	Microsoft Defender XDR.	DLP Purview
-What are the stages of the DLP alert lifecycle?	Trigger, Notify, Triage, Investigate, Remediate, and Tune.	DLP Purview
-What is the purpose of DLP triage?	To validate, prioritise, and assign the alert.	DLP Purview
-When should a DLP investigation move to Defender XDR?	When broader security correlation is required.	DLP Purview
-What tool should be used to review user actions over time during a DLP investigation?	Activity Explorer.	DLP Purview
-What tool should be used to inspect files or messages that matched a DLP policy?	Content Explorer.	DLP Purview
-What is the difference between a single-event alert and an aggregate-event alert?	Single-event alerts trigger on each match; aggregate alerts require a threshold.	DLP Purview
-What does Security Copilot provide during DLP investigations?	Summaries, context, and recommended next actions.	DLP Purview
-What factors are used by the DLP Triage Agent?	Content risk, exfiltration risk, and policy risk.	DLP Purview
-Why would DLP alerts be sent to Microsoft Sentinel?	To enable wider correlation and automation.	DLP Purview
-How should a false-positive DLP alert be handled?	Close it appropriately and tune policies if required.	DLP Purview
-How are Insider Risk alerts generated?	User activity is evaluated, assigned risk, and compared against thresholds.	Insider Risk
-How can Insider Risk alert volume be increased?	Increase scope, lower thresholds, or enable more indicators.	Insider Risk
-How can Insider Risk alert volume be reduced?	Reduce scope, raise thresholds, and apply exclusions.	Insider Risk
-What is the purpose of the Alerts dashboard in Insider Risk Management?	To prioritise, investigate, and manage alerts.	Insider Risk
-What feature automatically highlights high-priority insider risk alerts?	Spotlight.	Insider Risk
-What actions can be taken during Insider Risk triage?	Dismiss, assign, or create a case.	Insider Risk
-What is the purpose of the Insider Risk Triage Agent?	To automatically analyse and prioritise alerts.	Insider Risk
-What factors are used by the Insider Risk Triage Agent?	Risk indicators, policy type, and user context.	Insider Risk
-What is the difference between Activity Explorer and User Activity?	Activity Explorer focuses on events; User Activity focuses on behavioural trends.	Insider Risk
-Why would an analyst investigate Insider Risk alerts in Defender XDR?	To correlate them with identity, endpoint, and other security signals.	Insider Risk
-Which Advanced Hunting tables are commonly used for Insider Risk investigations?	AlertInfo, AlertEvidence, DataSecurityBehaviors, and DataSecurityEvents.	Insider Risk
-What is the purpose of an Insider Risk case?	To manage and track high-risk investigations.	Insider Risk
-How can an Insider Risk case be resolved?	As Benign or Confirmed Policy Violation.	Insider Risk
-What is the primary purpose of Microsoft Purview Audit?	To record and search historical activity across Microsoft 365.	Audit Purview
-What is the Unified Audit Log?	A central repository for Microsoft 365 audit events.	Audit Purview
-What is the difference between a Record Type and an Operation?	Record Type identifies the workload; Operation identifies the action performed.	Audit Purview
-Which PowerShell cmdlet is commonly used to search audit data?	Search-UnifiedAuditLog.	Audit Purview
-What does the MailItemsAccessed event record?	Message-level mailbox access activity.	Audit Purview
-What is a key limitation of Purview Audit?	It provides historical records rather than real-time detection and prevention.	Audit Purview
-Which Purview solution should be used to search content, apply legal holds, and export evidence?	eDiscovery.	eDiscovery Purview
-What is the primary purpose of Microsoft Purview eDiscovery?	To search, preserve, review, and export Microsoft 365 content for investigations.	eDiscovery Purview
-Which roles can manage eDiscovery cases?	eDiscovery Manager and eDiscovery Administrator.	eDiscovery Purview
-What additional capabilities does an eDiscovery Administrator have?	Managing settings and role assignments across cases.	eDiscovery Purview
-Can Global Administrators access eDiscovery cases automatically?	No. They must also receive eDiscovery permissions.	eDiscovery Purview
-Why must every eDiscovery search be associated with a case?	To provide investigation management, auditing, and controlled access.	eDiscovery Purview
-Can a user access an eDiscovery case with the correct role but without case membership?	No. Case membership is also required.	eDiscovery Purview
-Which Microsoft 365 workloads can be searched using eDiscovery?	Exchange, SharePoint, OneDrive, Teams, Microsoft 365 Groups, and Viva Engage.	eDiscovery Purview
-What are the phases of an eDiscovery search?	Define scope, identify data sources, build the query, and review results.	eDiscovery Purview
-What language can be used to create advanced eDiscovery searches?	KQL.	eDiscovery Purview
-What is the purpose of a review set?	To perform detailed analysis before export or response.	eDiscovery Purview
+In a Microsoft 365 E5 tenant, an analyst needs to review Data Loss Prevention (DLP) alerts triggered across SharePoint Online sites. Which two portals provide full access to view these DLP alerts?	The Microsoft Purview portal and the Microsoft Defender portal	DLP::Purview
+During a DLP alert investigation in Microsoft Purview, an analyst needs to inspect the actual sensitive content inside a flagged document. Which tool should they use?	Content Explorer. (Use Activity Explorer to track historical user actions and data movements over time).	DLP::Purview
+An organization needs to be notified if an employee downloads a large volume of documents from SharePoint Online during the month prior to their account deletion. Which Purview capability should be used?	"An Insider Risk Management policy based on the ""Data theft by departing users"" template."	
+An analyst triages an Insider Risk Management alert and confirms suspicious exfiltration activity. What administrative action should they take next to manage the formal investigation?	Create an Insider Risk case. (Cases can later be resolved as Benign or Confirmed Policy Violation).	InsiderRisk::Purview
+When running Advanced Hunting queries in Microsoft Defender XDR to correlate insider risk signals with endpoint telemetry, which two Purview tables store data security behaviors and events?	DataSecurityBehaviors and DataSecurityEvents (joined with AlertInfo and AlertEvidence).	InsiderRisk::Purview
+An investigation requires analyzing detailed workload actions performed within Microsoft 365 by an application registered in Microsoft Entra. Why are Entra sign-in logs insufficient, and what log source must be used?	Entra sign-in logs only record authentication events; detailed workload activity must be audited using the Microsoft Purview Audit log.	Audit::Purview
+An analyst needs to verify whether a specific user signed in to Microsoft 365 and shared a document stored in OneDrive for Business during the last 30 days. Which portal provides the authoritative audit log source for this activity?	The Microsoft Purview portal (Unified Audit Log).	Audit::Purview
+An audit search in Microsoft Purview Audit (Standard) returns 80,000 matching records. The security team requires a full CSV export without missing data, but the tenant cannot be upgraded to Audit (Premium). What should they do?	Refine the audit search into multiple smaller time ranges to ensure each export remains under the 50,000-record Audit (Standard) limit.	Audit::Purview
+An investigation requests Exchange Online and Microsoft Entra ID audit events from 9 months ago, but no results are returned. What auditing solution must be enabled to ensure logs remain searchable for at least 1 year going forward?	Microsoft Purview Audit (Premium). Audit (Standard) retains logs for up to 180 days.	Audit::Purview
+Which Microsoft Purview Audit (Premium) event records explicit message-level access, allowing investigators to prove whether an attacker actually read specific emails during a mailbox compromise?	MailItemsAccessed.	Audit::Purview
+An eDiscovery search targeting multiple custodians and SharePoint locations with wildcard keywords fails and returns error code CS007. What should the analyst do to resolve the failure?	Split the search into smaller searches by limiting custodians, locations, or date ranges to reduce query complexity.	eDiscovery::Purview
+A Global Administrator attempts to access an active eDiscovery case in the Microsoft Purview portal but is denied. Why does this occur and how is it resolved?	Global Administrators do NOT receive automatic eDiscovery access; they must explicitly be assigned the eDiscovery Manager or Administrator role AND added as a case member.	eDiscovery::Purview
+What key operational advantage does an eDiscovery Administrator have over an eDiscovery Manager in Microsoft Purview?	eDiscovery Administrators can view and manage all eDiscovery cases across the entire organization, whereas eDiscovery Managers can only access cases where they are explicitly added as members.	eDiscovery::Purview
+During an eDiscovery investigation, what Purview feature allows legal analysts to freeze search results, perform deep indexing, analyze context, and redact sensitive documents prior to export?	A Review Set.	eDiscovery::Purview
+A DLP alert is generated when sensitive data is uploaded to a personal cloud service. When should the investigation be transitioned from Microsoft Purview to Microsoft Defender XDR?	When broader cross-domain correlation is required across endpoint alerts, identity risks, and network telemetry to investigate a multi-stage attack.	DLP::Purview
+Which Exchange Online PowerShell cmdlet is used by security administrators to programmatically query the central Microsoft Purview Unified Audit Log?	Search-UnifiedAuditLog.	Audit::Purview
