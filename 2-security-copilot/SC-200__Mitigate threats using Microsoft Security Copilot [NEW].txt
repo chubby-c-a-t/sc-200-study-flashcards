@@ -1,27 +1,42 @@
 #separator:tab
 #html:true
-#tags column:3
-What is a large language model (LLM)?	A type of AI model designed to generate human-like content.	AI Copilot Fundamentals Security
-What is the purpose of tokenization in generative AI?	To break text into smaller units that the model can process.	AI Copilot Fundamentals Security
-What are embeddings in generative AI?	Vector representations that capture semantic meaning.	AI Copilot Fundamentals Security
-What does an attention layer do in a transformer model?	It evaluates relationships between tokens and surrounding context.	AI Copilot Fundamentals Security
-What is the purpose of a system prompt?	To provide instructions and context that guide model behaviour.	AI Copilot Fundamentals Security
-What is an AI agent?	An AI system capable of performing tasks on behalf of a user.	AI Copilot Fundamentals Security
-What unit measures Security Copilot computing capacity?	Security Compute Units (SCUs).	Copilot Fundamentals Security
-What are the four key elements of an effective Security Copilot prompt?	Goal, Context, Expectations, and Source.	Copilot Prompting Security
-An analyst wants to understand how Security Copilot generated a response. Where should they look?	The Process Log.	Copilot Operations Security
-How does Security Copilot ensure users only access data they are authorised to see?	It uses the On-Behalf-Of (OBO) model and honours existing permissions.	Copilot Security
-Which component evaluates prompts, builds execution plans, and coordinates capabilities?	The Orchestrator.	Architecture Copilot Security
-True or False: Microsoft uses Security Copilot prompt and session data to train foundational AI models.	False.	Copilot Security
-What feature allows analysts to save, organise, summarise, and share important findings from a session?	The Pin Board.	Copilot Operations Security
-What are the two methods for connecting an internal knowledge base to Security Copilot?	File Uploads and Azure AI Search.	Copilot Knowledge Security
-True or False: Security Copilot file uploads can be used for malware detonation.	False.	Copilot Knowledge Security
-A security analyst wants Security Copilot to search company knowledge stored externally. Which capability should they use?	The Azure AI Search Plugin.	Copilot Knowledge Security
-What four Guided Response categories can Copilot provide in Defender XDR?	Triage, Containment, Investigation, and Remediation.	Copilot Security XDR
-Which framework does Security Copilot use when analysing malicious scripts?	MITRE ATT&amp;CK.	Copilot Security XDR
-An analyst wants a comprehensive incident report that combines Microsoft security sources. Which two products does Copilot consolidate?	Microsoft Sentinel and Microsoft Defender XDR.	Copilot Security XDR
-Which Microsoft Entra capability allows activation of just-in-time privileged roles through Copilot?	Privileged Identity Management (PIM).	Copilot Entra Security
-Which Microsoft Entra solution uses Copilot to summarise user risk, explain context, and recommend mitigations?	Microsoft Entra ID Protection.	Copilot Entra Security
-Which two AI platforms power Copilot in Defender for Cloud?	Microsoft Security Copilot and Microsoft Copilot for Azure.	Cloud Copilot Defender for Security
-Which Defender for Cloud plan enables Copilot features such as attack path analysis and risk prioritisation?	Defender Cloud Security Posture Management (DCSPM).	Cloud Copilot Defender for Security
-How does Copilot assist with security recommendations in Defender for Cloud?	It can draft communications containing recommendations and remediation guidance.	Cloud Copilot Defender for Security
+"<span class=""front-text"">In Microsoft Security Copilot, which unit measures the provisioning and capacity allocation for AI processing across workloads?</span>
+"	Security Compute Units (SCUs).
+"<span class=""front-text"">When drafting a custom prompt in Microsoft Security Copilot, what four essential components make up an effective prompt structure?</span>
+"	Goal, Context, Expectations, and Source.
+"<span class=""front-text"">During an incident investigation, an analyst needs to inspect the step-by-step logic, plugin selection, and execution plan used by Security Copilot. Where should they look?</span>
+"	The Process Log.
+"<span class=""front-text"">A Tier 1 SOC analyst asks Security Copilot to summarize an incident involving data from a workspace they cannot access. Why does Copilot exclude that data?</span>
+"	Security Copilot uses the On-Behalf-Of (OBO) model and strictly enforces existing user RBAC permissions.
+"<span class=""front-text"">In Microsoft Security Copilot architecture, which core component evaluates user prompts, selects appropriate plugins, builds execution plans, and collates results?</span>
+"	The Orchestrator.
+"<span class=""front-text"">A CISO asks whether proprietary logs submitted to Microsoft Security Copilot will leak into public models. How does Microsoft handle prompt and session data?</span>
+"	Tenant prompt and session data are isolated and are not used to train foundational LLMs.
+"<span class=""front-text"">During a multi-stage threat investigation, an analyst wants to pin, organize, and share key Copilot insights and KQL outputs with team members. Which feature should they use?</span>
+"	The Pin Board.
+"<span class=""front-text"">An organization wants Security Copilot to query internal incident response playbooks stored in an external enterprise knowledge base. Which capability should be configured?</span>
+"	The Azure AI Search plugin.
+"<span class=""front-text"">An analyst uploads a suspicious script file directly into the Security Copilot chat window expecting dynamic execution analysis. What will happen?</span>
+"	File uploads provide textual context only; Security Copilot does not perform dynamic malware detonation on uploaded files.
+"<span class=""front-text"">In Microsoft Defender XDR, an analyst opens an incident but embedded Copilot summaries and guided responses are unavailable, even though standalone Copilot works. What should be enabled?</span>
+"	The Microsoft Defender XDR plugin in Microsoft Security Copilot.
+"<span class=""front-text"">When investigating a confirmed ransomware incident in Microsoft Defender XDR, what four categories of Guided Responses does Security Copilot provide?</span>
+"	Triage, Containment, Investigation, and Remediation.
+"<span class=""front-text"">When Security Copilot analyzes malicious scripts or command-line executions during an incident, which industry framework does it map tactics against?</span>
+"	The MITRE ATT&amp;CK framework.
+"<span class=""front-text"">An analyst requires a single, consolidated incident report combining SIEM telemetry from Microsoft Sentinel and XDR alerts from Defender. Which platform consolidates both via Copilot?</span>
+"	Microsoft Security Copilot embedded in the unified Microsoft Defender portal.
+"<span class=""front-text"">An analyst responding to an active breach uses Security Copilot to request temporary elevated permissions to remediate a compromised user. Which Microsoft Entra feature handles this request?</span>
+"	Privileged Identity Management (PIM).
+"<span class=""front-text"">In Microsoft Entra ID Protection, an administrator views a high-risk user profile. Which capability provides an AI-generated breakdown of the risk score and suggests mitigations?</span>
+"	Copilot in Microsoft Entra ID Protection.
+"<span class=""front-text"">In Microsoft Defender for Cloud, an administrator uses generative AI to analyze multi-cloud attack paths and draft remediation steps. Which two AI platforms power this experience?</span>
+"	Microsoft Security Copilot and Microsoft Copilot for Azure.
+"<span class=""front-text"">Which Microsoft Defender for Cloud plan must be enabled to unlock Security Copilot features such as attack path analysis and risk prioritization?</span>
+"	Defender Cloud Security Posture Management (DCSPM).
+"<span class=""front-text"">A cloud administrator needs to send tailored remediation guidance to workload owners for active posture findings. How does Security Copilot assist in Defender for Cloud?</span>
+"	It automatically drafts communication messages containing technical recommendations and remediation steps.
+"<span class=""front-text"">An analyst needs to set foundational rules and operational constraints for an automated Security Copilot prompt workflow. What prompt type establishes these boundaries?</span>
+"	The System Prompt.
+"<span class=""front-text"">When searching the Microsoft Purview unified audit log for activities performed by automated investigation or Copilot remediation engines, which record type should be queried?</span>
+"	AirInvestigation.
