@@ -1,44 +1,23 @@
 #separator:tab
 #html:true
 #tags column:3
-What are the two primary pillars of Microsoft Defender for Cloud?	Cloud Security Posture Management (CSPM) and Cloud Workload Protection (CWP).	Cloud Defender for
-What is Secure Score and how is it improved?	A measurement of security posture that improves when recommendations are remediated and resources become compliant.	Cloud Defender for
-How does Defender for Cloud extend protection to non-Azure virtual machines?	By onboarding them through Azure Arc.	Cloud Defender for
-What feature helps limit exposure to brute-force attacks on management ports?	Just-in-time (JIT) VM access.	Cloud Defender for
-Which feature automatically creates application allowlists for Windows servers?	Adaptive Application Controls.	Cloud Defender for
-What underlying Azure service is used to evaluate and enforce Defender for Cloud security controls?	Azure Policy.	Cloud Defender for
-What is the purpose of Asset Inventory?	To provide a centralized view of resources, posture, and security recommendations.	Cloud Defender for
-Why is Auto Provisioning used?	To automatically deploy required security agents and extensions.	Cloud Defender for
-Which agent replaced the retired Log Analytics Agent?	Azure Monitor Agent (AMA).	Cloud Defender for
-What is the purpose of Azure Monitor Agent (AMA)?	To collect monitoring and security data using Data Collection Rules.	Cloud Defender for
-What happens when Defender for Endpoint auto provisioning is enabled?	The Defender for Endpoint sensor is automatically deployed to eligible machines.	Cloud Defender for
-What is Direct Onboarding?	A method of connecting non-Azure servers through Defender for Endpoint without Azure Arc.	Cloud Defender for
-What is a key limitation of Direct Onboarding compared to Azure Arc onboarding?	It lacks Azure management capabilities such as Azure Policy and extensions.	Cloud Defender for
-What is Azure Arc primarily used for?	Managing on-premises, multicloud, and non-Azure resources as Azure resources.	Cloud Defender for
-What is the recommended onboarding method for non-Azure servers?	Azure Arc-enabled servers.	Cloud Defender for
-What is the difference between Azure Arc and AWS/GCP cloud connectors?	Azure Arc manages individual resources, while cloud connectors integrate entire AWS or GCP environments.	Cloud Defender for
-What benefits are gained from connecting AWS or GCP environments to Defender for Cloud?	Centralized visibility, recommendations, Secure Score integration, and security posture management.	Cloud Defender for
-What is the relationship between policies, initiatives, and recommendations in Defender for Cloud?	Policies evaluate requirements, initiatives group policies, and noncompliant policies generate recommendations.	Cloud Defender for
-What are security controls in Defender for Cloud?	Logical groups of related recommendations representing a specific attack surface.	Cloud Defender for
-How are industry and regulatory standards represented in Defender for Cloud?	As Azure Policy initiatives displayed in the Regulatory Compliance dashboard.	Cloud Defender for
-What is the purpose of the Regulatory Compliance dashboard?	To measure and track compliance against standards such as NIST, PCI-DSS, ISO 27001, and CIS.	Cloud Defender for
-What are Workbooks used for?	To create interactive visualizations and reports.	Cloud Defender for
-What additional scanning capabilities are included in Defender for Servers Plan 2?	Agentless vulnerability scanning, malware scanning, and machine secrets scanning.	Cloud Defender for
-How is DNS threat protection provided since Defender for DNS was retired?	It is included within Defender for Servers Plan 2.	Cloud Defender for
-How does Defender for Storage identify uploaded malware?	By using storage telemetry and hash reputation analysis.	Cloud Defender for
-Which log source should be reviewed when investigating Defender for Resource Manager alerts?	Azure Activity Log.	Cloud Defender for
-What are the three pillars of Defender for Containers?	Environment hardening, vulnerability assessment, and runtime threat protection.	Cloud Defender for
-What must be installed to enforce Kubernetes security policies?	Azure Policy for Kubernetes.	Cloud Defender for
-True or False: Defender for Azure Cosmos DB directly inspects stored database content.	False. It analyzes service telemetry rather than stored data.	Cloud Defender for
-What is the difference between an alert and an incident in Defender for Cloud?	An alert is a single threat detection, while an incident is a collection of correlated alerts created through Cloud Smart Alert Correlation.	Cloud Defender for
-What three analytics methods are used to detect threats in Defender for Cloud?	Threat intelligence, behavioral analytics, and anomaly detection.	Cloud Defender for
-What is behavioral analytics?	The use of machine learning and known attack patterns to identify compromised resources.	Cloud Defender for
-What is anomaly detection?	The use of deployment-specific baselines to identify unusual activity.	Cloud Defender for
-What does a High severity alert indicate?	A high probability of compromise requiring immediate investigation.	Cloud Defender for
-Why are MITRE ATT&amp;CK tactics included with security alerts?	To help identify the attack stage and guide investigations.	Cloud Defender for
-What can automate responses to alerts and recommendations?	Azure Logic Apps through Workflow Automation.	Cloud Defender for
-Which events can trigger Workflow Automation?	Security alerts and security recommendations.	Cloud Defender for
-What is a suppression rule used for?	To automatically dismiss future alerts that match defined criteria.	Cloud Defender for
-What happens when an alert matches a suppression rule?	It is generated but automatically marked as Dismissed.	Cloud Defender for
-What is the purpose of a Threat Intelligence Report?	To provide attacker information, IoCs, campaigns, tactics, and remediation guidance.	Cloud Defender for
-What are the three types of Threat Intelligence Reports?	Activity Group Report, Campaign Report, and Threat Summary Report.	Cloud Defender for
+In Microsoft Defender for Cloud, an organization requires agentless vulnerability scanning, agentless malware scanning, and machine secrets scanning across virtual machines. Which plan must be enabled?	Defender for Servers Plan 2. (Plan 1 provides basic Defender for Endpoint integration and vulnerability management; Plan 2 adds agentless scans, network threat detection, and DNS protection).	DefenderCloud::Servers
+An organization onboards non-Azure servers to Defender for Cloud using Defender for Endpoint Direct Onboarding instead of Azure Arc. What key capability is lost?	Centralized Azure management capabilities, including Azure Policy enforcement, extensions deployment, and guest configuration controls.	DefenderCloud::Onboarding
+How does Defender for Cloud integrate entire AWS accounts or GCP projects into its security posture management versus managing individual non-Azure VMs?	Native Cloud Connectors integrate full AWS/GCP environment hierarchies, while Azure Arc-enabled servers onboard and manage individual virtual machines as Azure resources.	DefenderCloud::Multicloud
+Which Defender for Cloud feature reduces management port exposure (e.g., RDP 3389, SSH 22) by dynamically opening inbound firewall rules only upon approved request?	Just-in-Time (JIT) VM Access. (Configures Network Security Group rules to block ports by default and open them temporarily for specific IP addresses).	DefenderCloud::WorkloadProtection
+An administrator needs to prevent unauthorized binaries from running on Windows servers by automatically analyzing machine execution history and creating executable allowlists. What feature should be used?	Adaptive Application Controls.	DefenderCloud::WorkloadProtection
+Which component handles File Integrity Monitoring (FIM) in Defender for Cloud for tracking critical OS file, registry, and application changes on Windows servers without the legacy Log Analytics agent?	The Microsoft Defender for Endpoint extension.	DefenderCloud::WorkloadProtection
+How does Defender for Storage detect malware uploaded to blob storage containers without opening, inspecting, or downloading the actual stored files?	By evaluating storage activity telemetry and file hashes against Microsoft Threat Intelligence reputation data.	DefenderCloud::Storage
+What component must be deployed to Azure Kubernetes Service (AKS) clusters so that Defender for Cloud can enforce Kubernetes security policies and block non-compliant pod deployments?	Azure Policy for Kubernetes.	DefenderCloud::Containers
+Does Defender for Azure Cosmos DB or Defender for SQL inspect stored database content to detect SQL injection or data exfiltration?	No. Threat detection analyzes database service telemetry and management/data-plane operations, not stored database content.	DefenderCloud::Databases
+An analyst receives a high-severity Defender for Resource Manager alert indicating unusual administrative subscription activity. Which Azure log source should be investigated?	The Azure Activity Log.	DefenderCloud::Investigation
+A lab subnet frequently triggers benign network alerts in Defender for Cloud. How can an administrator automatically dismiss these alerts in the future with minimal effort?	Create a Defender for Cloud Suppression Rule. (Sentinel Automation Rules cannot close Defender for Cloud alerts directly).	DefenderCloud::Alerts
+What is the primary operational difference in Defender for Cloud between a Suppression Rule and a Workflow Automation?	Suppression Rules automatically dismiss non-actionable alerts without triggering responses; Workflow Automation uses Azure Logic Apps to run automated remediation workflows when alerts or recommendations occur.	DefenderCloud::Automation
+How does Defender for Cloud measure an organization's compliance against industry benchmarks like PCI-DSS, NIST, or CIS?	By grouping underlying Azure Policy definitions into Azure Policy initiative definitions and evaluating resource compliance on the Regulatory Compliance dashboard.	DefenderCloud::Posture
+Following the retirement of standalone Defender for DNS, how is DNS threat detection provided for Azure virtual machines in Defender for Cloud?	DNS threat protection is included natively within Defender for Servers Plan 2.	DefenderCloud::Servers
+Which log collection component replaced the legacy Log Analytics agent (MMA) in Defender for Cloud for deploying security agent configurations via Data Collection Rules (DCR)?	The Azure Monitor Agent (AMA).	DefenderCloud::Architecture
+What mechanism in Defender for Cloud aggregates multiple distinct security alerts affecting related cloud resources into a single structured incident?	Cloud Smart Alert Correlation.	DefenderCloud::Investigation
+In Defender for Cloud architecture, what is the core operational distinction between Cloud Security Posture Management (CSPM) and Cloud Workload Protection (CWP)?	CSPM assesses resource configurations and enforces security recommendations (Secure Score); CWP provides active runtime threat detection and alert generation across workloads.	DefenderCloud::Architecture
+Why must on-premises or multi-cloud virtual machines be onboarded as Azure Arc-enabled servers to receive full Defender for Cloud posture management?	Azure Arc projects non-Azure machines into Azure Resource Manager, enabling Azure Policy evaluation, extension auto-provisioning, and unified inventory tracking.	DefenderCloud::Onboarding
+During an incident investigation in Defender for Cloud, an analyst wants detailed context on the specific threat actor group, campaign tactics, and IoCs behind an alert. Where in the alert details can they find this?	In the integrated Threat Intelligence Report (Activity Group, Campaign, or Threat Summary Report).	DefenderCloud::Investigation
+Why does remediating recommendations inside high-weight Security Controls improve a tenant's overall Secure Score faster than remediating individual isolated recommendations?	Secure Score is calculated by Security Control categories; max points for a control are awarded only when ALL resources within that control become fully compliant.	DefenderCloud::Posture
