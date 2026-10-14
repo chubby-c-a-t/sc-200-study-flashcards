@@ -1,0 +1,67 @@
+#separator:tab
+#html:true
+#tags column:3
+In Microsoft Sentinel KQL, write a query to return failed Windows logons from the last 24 hours.	<pre>SecurityEvent<br>| where TimeGenerated > ago(1d)<br>| where EventID == 4625</pre>	KQL::Write
+In Microsoft Sentinel KQL, write a query to return successful and failed Windows logons from the last 24 hours.	<pre>SecurityEvent<br>| where TimeGenerated > ago(1d)<br>| where EventID in (4624, 4625)</pre>	KQL::Write
+In KQL, what must normally appear first in a query before piped filters and transformations?	The source table, for example <code>DeviceEvents</code> or <code>SecurityEvent</code>.	KQL::Structure
+In KQL, which operator filters rows according to a condition?	<code>where</code>	KQL::Operator
+In KQL, which operator selects the columns returned by a query?	<code>project</code>	KQL::Operator
+In KQL, which operator adds a calculated column without removing the existing columns?	<code>extend</code>	KQL::Operator
+In KQL, write the syntax to sort events from newest to oldest.	<code>| order by TimeGenerated desc</code>	KQL::Write
+In KQL, write the syntax to exclude Device3 from results.	"<code>| where DeviceName != ""Device3""</code>"	KQL::Write
+In KQL, what is the difference between <code>==</code> and <code>=~</code>?	<code>==</code> is case-sensitive equality; <code>=~</code> is case-insensitive equality.	KQL::Compare
+In KQL, when matching a whole indexed term such as powershell, which operator is generally preferable to <code>contains</code>?	"<code>has</code>, for example <code>| where ProcessCommandLine has ""powershell""</code>."	KQL::Strings
+In KQL, when is <code>contains</code> more appropriate than <code>has</code>?	When matching a character sequence inside a longer value rather than a whole token.	KQL::Strings
+In KQL, write a case-insensitive exact match for AccountType equal to user.	"<code>| where AccountType =~ ""user""</code>"	KQL::Write
+In KQL, write a filter for Event IDs 4624, 4625, or 4672.	<code>| where EventID in (4624, 4625, 4672)</code>	KQL::Write
+In KQL, write a condition for HTTP status 401 or 403.	<code>| where ResponseStatusCode == 401 or ResponseStatusCode == 403</code><br>Equivalent concise form: <code>| where ResponseStatusCode in (401, 403)</code>.	KQL::Write
+Why is <code>ResponseStatusCode == 401 and ResponseStatusCode == 403</code> logically wrong for one event?	One value cannot equal 401 and 403 simultaneously; use <code>or</code> or <code>in (401, 403)</code>.	KQL::Fix
+In KQL, write a seven-day lookback variable and apply it to SecurityEvent.	<pre>let lookback = 7d;<br>SecurityEvent<br>| where TimeGenerated &gt; ago(lookback)</pre>	KQL::Let
+Why must a KQL <code>let</code> statement end with a semicolon?	The semicolon terminates the <code>let</code> statement before the following tabular expression begins.	KQL::Essential
+Fix this KQL: <code>SecurityEvent | where EventID = 4625</code>	<code>SecurityEvent | where EventID == 4625</code>	KQL::Fix
+In KQL, write a filter for events between seven days ago and one day ago.	<code>| where TimeGenerated &gt; ago(7d) and TimeGenerated &lt; ago(1d)</code>	KQL::Time
+In KQL, write a filter that removes empty or null Account values.	<code>| where isnotempty(Account)</code>	KQL::Filter
+In KQL, replace an empty Account with Unknown in a new DisplayAccount column.	"<code>| extend DisplayAccount = iff(isempty(Account), ""Unknown"", Account)</code>"	KQL::Transform
+In KQL, parse JSON held in AdditionalFields into a dynamic value named Parsed.	<code>| extend Parsed = parse_json(AdditionalFields)</code>	KQL::Transform
+In KQL, access the operatingSystem property from a dynamic field named DeviceDetail.	<code>| extend OS = tostring(DeviceDetail.operatingSystem)</code>	KQL::Transform
+In KQL, which operator expands each element of a dynamic array into a separate row?	<code>mv-expand</code>	KQL::Transform
+In KQL, split DOMAIN\user and return the username portion.	"<code>| extend Username = tostring(split(Account, ""\\"")[1])</code>"	KQL::Strings
+In KQL, which operator groups rows and calculates aggregates such as count, dcount, min, or max?	<code>summarize</code>	KQL::Operator
+In KQL, write a query to count failed logons by account.	<pre>SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account</pre>	KQL::Summarize
+In KQL, write a query to show accounts with more than 10 failed logons, highest count first.	<pre>SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account<br>| where FailedLogons &gt; 10<br>| order by FailedLogons desc</pre>	KQL::Hunting
+In KQL, write a query to count failed logons per account in one-hour intervals.	<pre>SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons = count() by Account, bin(TimeGenerated, 1h)</pre>	KQL::Time
+In KQL, what does <code>bin(TimeGenerated, 1h)</code> do?	It groups timestamps into one-hour time buckets for aggregation or visualisation.	KQL::Time
+In KQL, write a query to count distinct computers used by each account.	<code>SecurityEvent | summarize ComputerCount = dcount(Computer) by Account</code>	KQL::Summarize
+In KQL, what is the difference between <code>count()</code> and <code>dcount(Field)</code>?	<code>count()</code> counts rows; <code>dcount(Field)</code> estimates the number of distinct values in a field.	KQL::Compare
+In KQL, what is the difference between <code>make_list()</code> and <code>make_set()</code>?	<code>make_list()</code> retains duplicate values; <code>make_set()</code> returns distinct values.	KQL::Compare
+In KQL, write a query to retain the newest complete row for each account.	<code>SecurityEvent | summarize arg_max(TimeGenerated, *) by Account</code>	KQL::Summarize
+In KQL, why does filtering before <code>arg_max()</code> produce a different result from filtering afterwards?	Filtering first finds the newest row among matching events. Filtering afterwards finds each group's newest row overall and then checks whether that row matches.	KQL::Read
+In KQL, write a query to count successful and failed logons separately by account.	<pre>SecurityEvent<br>| where EventID in (4624, 4625)<br>| summarize Successful=countif(EventID == 4624), Failed=countif(EventID == 4625) by Account</pre>	KQL::Summarize
+In KQL, which operator returns the first N rows after sorting by a specified expression?	<code>top</code>, for example <code>| top 10 by FailedLogons desc</code>.	KQL::Operator
+In KQL, which operator adds graphical output after tabular results have been prepared?	<code>render</code>	KQL::Visualise
+In KQL, write a query to chart failed logons over time in one-hour bins.	<pre>SecurityEvent<br>| where EventID == 4625<br>| summarize FailedLogons=count() by bin(TimeGenerated, 1h)<br>| render timechart</pre>	KQL::Visualise
+In KQL, which operator combines rows from two or more tables without matching keys?	<code>union</code>	KQL::Union
+In KQL, which operator combines columns from two datasets by matching key values?	<code>join</code>	KQL::Join
+In KQL, when should <code>union</code> be used instead of <code>join</code>?	Use <code>union</code> to search or stack rows from multiple tables; use <code>join</code> to correlate matching rows by a key.	KQL::Compare
+In Microsoft Sentinel KQL, search SigninLogs, AuditLogs, and SecurityAlert together. Which opening syntax should you use?	<code>union SigninLogs, AuditLogs, SecurityAlert</code>	KQL::Union
+In KQL, do tables in a <code>union</code> need identical schemas?	No. Missing columns are populated with null for rows from tables that do not contain those columns.	KQL::Union
+In KQL, add a SourceTable column that records each row's source table while unioning tables beginning with Security.	<code>union withsource=SourceTable Security*</code>	KQL::Union
+In a KQL join, how are columns explicitly referenced from the left and right inputs?	Use <code>$left.ColumnName</code> and <code>$right.ColumnName</code>.	KQL::Join
+In KQL, what is the difference between <code>join kind=inner</code> and <code>join kind=leftouter</code>?	<code>inner</code> returns only matched rows; <code>leftouter</code> keeps every left-side row and fills unmatched right-side columns with null.	KQL::Join
+In KQL, which join flavour returns left-side rows that have no match on the right?	<code>join kind=leftanti</code>	KQL::Join
+In Microsoft Defender XDR, which advanced hunting table contains UEBA behaviour titles, descriptions, categories, and identifiers?	<code>BehaviorInfo</code>	KQL::Table
+In Microsoft Defender XDR, which advanced hunting table contains the users, devices, IP addresses, and other entities associated with UEBA behaviours?	<code>BehaviorEntities</code>	KQL::Table
+In Microsoft Sentinel, which table should be used for Microsoft Graph API request-level activity?	<code>MicrosoftGraphActivityLogs</code>	KQL::Table
+Write KQL to identify the top 20 calling entities by distinct failed requests to /groups during the last three days.	"<pre>MicrosoftGraphActivityLogs<br>| where TimeGenerated &gt;= ago(3d)<br>| where ResponseStatusCode in (401, 403)<br>| where RequestUri contains ""/groups""<br>| summarize UniqueRequests=count_distinct(RequestId) by AppId, ServicePrincipalId, UserId<br>| sort by UniqueRequests desc<br>| limit 20</pre>"	KQL::Scenario
+For a Microsoft Defender XDR custom detection, which columns must the query preserve in addition to a supported entity identifier?	<code>Timestamp</code> and <code>ReportId</code>.	KQL::Detection
+For a Microsoft Defender XDR custom detection that marks a user as compromised, name one supported user identifier column.	<code>AccountUpn</code> is one supported identifier. Other supported account identifiers include AccountObjectId and AccountSid.	KQL::Detection
+A Microsoft Defender XDR custom-detection query groups events by DeviceId. How can it retain the latest Timestamp and ReportId through aggregation?	<code>| summarize (Timestamp, ReportId)=arg_max(Timestamp, ReportId), EventCount=count() by DeviceId</code>	KQL::Detection
+Why can you not simply <code>project Timestamp, ReportId</code> after a <code>summarize</code> that discarded those columns?	<code>summarize</code> removes columns that are neither grouping keys nor aggregate outputs. <code>project</code> cannot restore data that no longer exists.	KQL::Detection
+In Microsoft Defender XDR Advanced Hunting, which timestamp column is normally used?	<code>Timestamp</code>. In Microsoft Sentinel and Log Analytics tables, the common timestamp is usually <code>TimeGenerated</code>.	KQL::Context
+In KQL, what performance optimisation should normally be applied near the start of a security hunting query?	Filter the time range and other selective conditions as early as possible.	KQL::Performance
+In KQL, write syntax to extract the first capture group from RawData using the pattern x= followed by digits.	"<code>| extend ExtractedValue = extract(""x=([0-9]+)"", 1, RawData)</code>"	KQL::Strings
+In KQL, which operator extracts typed values from a consistently structured string using literal delimiters?	<code>parse</code>	KQL::Transform
+In Microsoft Sentinel, what are Microsoft-maintained parsers that normalise different source logs into common schemas called?	Advanced Security Information Model (ASIM) parsers.	KQL::ASIM
+In Microsoft Sentinel, how can a useful query be made reusable as a virtual table or parser?	Save it as a function, then invoke the function name like a table in later queries.	KQL::Function
+In KQL, which operator is best for a broad search across every table and column, and why should it be used sparingly?	<code>search</code>. It is useful when the source is unknown, but targeted table and column filters are usually more efficient and precise.	KQL::Search
+"Replace the broad query <code>search ""4625""</code> with targeted KQL for failed Windows logons."	<code>SecurityEvent | where EventID == 4625</code>	KQL::Fix
