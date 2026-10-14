@@ -1,0 +1,68 @@
+#separator:tab
+#html:true
+#tags column:3
+In Microsoft Sentinel, what is the difference between an alert and an incident?	An alert is a single detection; an incident groups related alerts and entities into one investigation.	Sentinel::Incidents
+In Microsoft Sentinel, which page should an analyst use to triage, assign, classify, and close correlated detections?	The Incidents queue.	Sentinel::Incidents
+In Microsoft Sentinel, which incident view visualises relationships between users, hosts, IP addresses, alerts, and other entities?	The investigation graph.	Sentinel::Incidents
+In Microsoft Sentinel, what should an analyst use to record investigation context that other analysts need to see?	Incident comments and the activity log.	Sentinel::Incidents
+In Microsoft Sentinel, what is the purpose of incident tasks?	To provide a standard checklist of investigation and response steps for analysts.	Sentinel::Incidents
+In Microsoft Sentinel, which analytics-rule setting controls whether alerts created close together and by the same rule become one incident or separate incidents?	Incident grouping settings.	Sentinel::Analytics
+In Microsoft Sentinel, which analytics rule type runs a scheduled KQL query over ingested data?	A Scheduled query rule.	Sentinel::Analytics
+In Microsoft Sentinel, which analytics rule type uses Microsoft-authored detections that run continuously and cannot have their query logic edited?	A Microsoft security rule.	Sentinel::Analytics
+In Microsoft Sentinel, what is a Near-real-time (NRT) analytics rule designed to do?	Run a KQL detection at one-minute intervals for low-latency alerting.	Sentinel::Analytics
+In Microsoft Sentinel, when should a Scheduled query rule be chosen instead of an NRT rule?	When the detection needs a configurable schedule or lookback, uses unsupported NRT logic, or does not require one-minute execution.	Sentinel::Analytics
+In a Microsoft Sentinel scheduled analytics rule, what must be considered when setting query frequency and lookup period?	The lookup period should cover the intended data window, and the frequency controls how often the rule evaluates that window.	Sentinel::Analytics
+In Microsoft Sentinel, how can values returned by a KQL query be promoted to incident entities such as Account, Host, IP, URL, or FileHash?	Configure entity mapping in the analytics rule.	Sentinel::Analytics
+In Microsoft Sentinel, what analytics-rule feature adds query-result values to alert details without making them entities?	Custom details.	Sentinel::Analytics
+In Microsoft Sentinel, which analytics-rule feature can set alert severity dynamically from query results?	Alert details override.	Sentinel::Analytics
+In Microsoft Sentinel, an existing analytics rule must be temporarily stopped without deleting its configuration. What should be done?	Disable the rule.	Sentinel::Analytics
+In Microsoft Sentinel, what is the main value of analytics-rule templates in the Content hub?	They provide Microsoft or solution-authored starting configurations for detections tied to relevant data sources.	Sentinel::Analytics
+In Microsoft Sentinel, what is the difference between an automation rule and a playbook?	An automation rule evaluates conditions and manages the workflow; a playbook is an Azure Logic App that performs response actions.	Sentinel::Automation
+In Microsoft Sentinel, which feature should automatically assign incidents, change status or severity, add tags, or run playbooks when conditions match?	An automation rule.	Sentinel::Automation
+In Microsoft Sentinel, which technology underpins playbooks?	Azure Logic Apps.	Sentinel::Automation
+In Microsoft Sentinel, what is the difference between incident-triggered and alert-triggered playbooks?	Incident-triggered playbooks receive incident context; alert-triggered playbooks run for individual alerts and receive alert context.	Sentinel::Automation
+In Microsoft Sentinel, which role allows an analyst to run playbooks manually but does not grant permission to edit them?	Microsoft Sentinel Playbook Operator.	Sentinel::RBAC
+In Microsoft Sentinel, which role is needed to create or edit the Azure Logic Apps used as playbooks?	Logic App Contributor on the playbook resource or resource group.	Sentinel::RBAC
+In Microsoft Sentinel, which role provides permission to modify incidents, including assignment, status, and classification?	Microsoft Sentinel Responder.	Sentinel::RBAC
+In Microsoft Sentinel, which role can create and modify automation rules?	Microsoft Sentinel Automation Contributor.	Sentinel::RBAC
+In Microsoft Sentinel, which role provides read-only access to incidents, data, workbooks, and other Sentinel resources?	Microsoft Sentinel Reader.	Sentinel::RBAC
+In Microsoft Sentinel, which role includes Reader capabilities and can create or edit analytics rules, workbooks, and other Sentinel content?	Microsoft Sentinel Contributor.	Sentinel::RBAC
+A Microsoft Sentinel automation rule cannot run a playbook stored in another resource group. What permission is commonly missing?	Microsoft Sentinel Automation Contributor must be assigned to the Sentinel service identity on the playbook's resource group.	Sentinel::RBAC
+In Microsoft Sentinel, which feature provides packaged data connectors, analytics rules, workbooks, hunting queries, parsers, and playbooks for a product or data source?	A solution installed from the Content hub.	Sentinel::ContentHub
+In Microsoft Sentinel, what should be checked first when an analytics template has no data to query?	Whether the required data connector is installed, connected, and ingesting the expected tables.	Sentinel::Connectors
+In Microsoft Sentinel, what is the purpose of a data connector?	To configure ingestion or integration of data from a source into Sentinel and its Log Analytics workspace.	Sentinel::Connectors
+In Microsoft Sentinel, which agent is the modern choice for collecting Windows events and Syslog from servers?	Azure Monitor Agent (AMA).	Sentinel::Connectors
+In Microsoft Sentinel, what controls which events Azure Monitor Agent collects and where it sends them?	A Data Collection Rule (DCR).	Sentinel::Connectors
+In Microsoft Sentinel, what is the recommended way to connect on-premises or non-Azure servers so Azure Monitor Agent can be managed as an Azure extension?	Azure Arc-enabled servers.	Sentinel::Connectors
+In Microsoft Sentinel, which DCR data source is used for Windows Security Event logs?	Windows event logs, normally configured through the Windows Security Events via AMA connector.	Sentinel::Connectors
+In Microsoft Sentinel, which DCR data source is used for Linux security and system messages?	Syslog.	Sentinel::Connectors
+In Microsoft Sentinel, what should be queried to verify that an AMA-connected machine is reporting?	The Heartbeat table.	Sentinel::Troubleshoot
+In Microsoft Sentinel, what is the difference between Common Event Format (CEF) and Syslog ingestion?	CEF is a standardised security-event format commonly transported over Syslog; plain Syslog can contain vendor-specific, unnormalised messages.	Sentinel::Connectors
+In Microsoft Sentinel, how are supported CEF events normally forwarded from an appliance that cannot send directly to the workspace?	The appliance sends CEF over Syslog to a Linux log forwarder running AMA, which forwards the data to Sentinel.	Sentinel::Connectors
+In Microsoft Sentinel, which feature imports a relatively small reference list that can be used in KQL and analytics rules?	A watchlist.	Sentinel::Watchlists
+In Microsoft Sentinel KQL, which function retrieves a watchlist by alias?	<code>_GetWatchlist('alias')</code>	Sentinel::Watchlists
+In Microsoft Sentinel, when should a watchlist be used instead of repeatedly hard-coding values in queries?	When analysts need a centrally maintained reference list such as VIP users, approved IPs, high-value assets, or terminated accounts.	Sentinel::Watchlists
+In Microsoft Sentinel, what is ASIM?	The Advanced Security Information Model, a normalisation layer that maps diverse source telemetry to common schemas for source-agnostic detection and hunting.	Sentinel::ASIM
+In Microsoft Sentinel, what is the advantage of querying an ASIM parser rather than a vendor-specific table directly?	The same query can work across multiple products that map to the normalised schema.	Sentinel::ASIM
+In Microsoft Sentinel, which capability enriches incidents and alerts with behavioural insights and peer-group context about users and entities?	User and Entity Behavior Analytics (UEBA).	Sentinel::UEBA
+In Microsoft Sentinel, which table contains UEBA behaviour metadata such as behaviour names and categories?	BehaviorInfo.	Sentinel::UEBA
+In Microsoft Sentinel, which table links UEBA behaviours to associated users, hosts, IP addresses, and other entities?	BehaviorEntities.	Sentinel::UEBA
+In Microsoft Sentinel, which feature should be used to build interactive visual dashboards for security data?	Workbooks.	Sentinel::Workbooks
+In Microsoft Sentinel, what is the difference between a Workbook and an Analytics rule?	A workbook visualises and explores data; an analytics rule runs detection logic and creates alerts or incidents.	Sentinel::Workbooks
+In Microsoft Sentinel, which feature should analysts use to proactively run Microsoft-authored or custom queries without automatically creating alerts?	Hunting queries.	Sentinel::Hunting
+In Microsoft Sentinel, what does creating a hunting bookmark preserve?	The selected query result and investigation context so it can be revisited or promoted into an incident.	Sentinel::Hunting
+In Microsoft Sentinel, how can a useful hunting query become a recurring detection?	Create an analytics rule from the query and configure its schedule, alert details, and entity mappings.	Sentinel::Hunting
+In Microsoft Sentinel, what is the purpose of a livestream hunting query?	To run a query continuously and surface matching events as they arrive for an active investigation.	Sentinel::Hunting
+In Microsoft Sentinel, which feature should be used to reduce repeated high-volume data into stored aggregate results for faster and cheaper investigation queries?	Summary rules.	Sentinel::DataLake
+In Microsoft Sentinel, when is a summary rule preferable to a workbook?	Use a summary rule to create scheduled aggregated data; use a workbook to visualise data that already exists.	Sentinel::DataLake
+In Microsoft Sentinel, what is the purpose of the Sentinel data lake?	To retain and analyse large security datasets using data-lake storage and analytics capabilities alongside the operational SIEM tier.	Sentinel::DataLake
+In Microsoft Sentinel, what is the difference between data-lake search jobs and real-time analytics rules?	Search jobs investigate data over a selected historical scope; analytics rules continuously evaluate incoming operational data to create detections.	Sentinel::DataLake
+In Microsoft Sentinel, what should be used to investigate archived or long-retention data that is not in the interactive analytics tier?	A search job over the relevant data-lake or archive scope.	Sentinel::DataLake
+In Microsoft Sentinel, which capability maps detection coverage to MITRE ATT&CK tactics and techniques so gaps can be identified?	The MITRE ATT&CK coverage view.	Sentinel::MITRE
+In Microsoft Sentinel, what is the purpose of threat-intelligence indicators?	To store known malicious or suspicious observables such as IP addresses, domains, URLs, and file hashes for matching and investigation.	Sentinel::ThreatIntel
+In Microsoft Sentinel, which table commonly stores threat-intelligence indicators in the Log Analytics workspace?	ThreatIntelligenceIndicator.	Sentinel::ThreatIntel
+In Microsoft Sentinel, what is the purpose of the User and Entity pages during an investigation?	To pivot from an incident into consolidated context, related alerts, activity, and behavioural information for a specific entity.	Sentinel::Entities
+In Microsoft Sentinel, multiple workspaces across different tenants must be centrally monitored by one provider. Which Azure service supports delegated cross-tenant management?	Azure Lighthouse.	Sentinel::Architecture
+In Microsoft Sentinel, why might an organisation use multiple workspaces?	To meet data residency, tenant, access-control, ownership, or billing requirements, accepting additional cross-workspace management complexity.	Sentinel::Architecture
+In Microsoft Sentinel, which KQL syntax queries another Log Analytics workspace when cross-workspace access is available?	<code>workspace('&lt;workspace-name-or-id&gt;').TableName</code>	Sentinel::Architecture
+In Microsoft Sentinel, what is the difference between data retention and data ingestion?	Ingestion brings records into a workspace; retention determines how long those records remain available in a storage tier.	Sentinel::Architecture
