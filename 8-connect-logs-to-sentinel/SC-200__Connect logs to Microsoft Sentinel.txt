@@ -1,0 +1,48 @@
+#separator:tab
+#html:true
+#tags column:3
+In Microsoft Sentinel, after installing a solution from Content hub, where do you configure its connector?	On the Data connectors page. The solution supplies deployable content; the connector configuration establishes ingestion or integration.	Sentinel::Connectors
+In Microsoft Sentinel, what should be checked first when an analytics template returns no data?	Verify that its required data connector is connected and that the expected table is receiving records.	Sentinel::Troubleshooting
+In Microsoft Sentinel, what is the difference between installing a Content hub solution and connecting a data source?	Installing a solution deploys packaged content such as connectors, analytics templates and workbooks; configuring its data connector begins the source integration or ingestion.	Sentinel::ContentHub
+In Microsoft Sentinel, which modern agent should collect Windows events, Syslog and CEF from supported machines?	Azure Monitor Agent (AMA).	Sentinel::AMA
+In Microsoft Sentinel, what controls which records AMA collects, which transformations it applies, and where it sends the data?	A Data Collection Rule (DCR).	Sentinel::DCR
+In Microsoft Sentinel, why are DCRs useful for controlling ingestion cost and volume?	They can filter data before ingestion so unwanted events are not sent to the workspace.	Sentinel::DCR
+In Microsoft Sentinel, what makes a DCR reusable across machines?	The DCR is an Azure resource independent of an individual VM or workspace association, so it can be associated with multiple eligible machines.	Sentinel::DCR
+In Microsoft Sentinel, on-premises Windows servers do not appear in the Windows Security Events via AMA DCR resource picker. What must be installed first?	The Azure Connected Machine agent, which onboards the servers to Azure Arc.	Sentinel::Scenario
+In Microsoft Sentinel, can Windows Security Events via AMA collect from Azure Windows Server and Windows client VMs in regions different from the workspace?	Yes. The connector can collect from supported Azure Windows VMs regardless of those VM regions.	Sentinel::Scenario
+In Microsoft Sentinel, which connector is recommended for collecting Windows Security logs from servers?	Windows Security Events via AMA.	Sentinel::Windows
+In Microsoft Sentinel, which table receives Windows Security Events collected by the AMA connector?	<code>SecurityEvent</code>.	Sentinel::Tables
+In Microsoft Sentinel, why should the Security Events via Legacy Agent connector normally be avoided for new deployments?	It relies on the retired Log Analytics agent; AMA and DCR-based collection are the current approach.	Sentinel::Legacy
+In Microsoft Sentinel, what risk is created by collecting the same Windows events simultaneously through AMA and the legacy agent?	Duplicate events and double ingestion charges.	Sentinel::Troubleshooting
+In Microsoft Sentinel, which table is useful for confirming that an AMA-managed machine is reporting to Log Analytics?	<code>Heartbeat</code>.	Sentinel::Tables
+In Microsoft Sentinel, what is the difference between the Common and Minimal Windows Security Event collection sets?	Common provides a broader audit trail; Minimal prioritises lower-volume events considered useful for detecting successful compromise.	Sentinel::Windows
+In Microsoft Sentinel, which Windows event ID represents process creation and is important for security monitoring?	Event ID 4688.	Sentinel::Windows
+In Microsoft Sentinel, an organisation needs CEF logs from network appliances that cannot run AMA. What infrastructure should be deployed first?	A supported Linux log forwarder that can receive the appliance logs and run AMA.	Sentinel::CEF
+In Microsoft Sentinel, which connector should ingest security-appliance events formatted in Common Event Format?	Common Event Format (CEF) via AMA.	Sentinel::CEF
+In Microsoft Sentinel, which table receives events from the CEF via AMA connector?	<code>CommonSecurityLog</code>.	Sentinel::Tables
+In Microsoft Sentinel, which table receives plain Linux Syslog data?	<code>Syslog</code>.	Sentinel::Tables
+In the Microsoft Sentinel Syslog table, which field normally contains the unstructured message body?	<code>SyslogMessage</code>.	Sentinel::Tables
+In Microsoft Sentinel, why is CEF generally easier to query than vendor-specific plain Syslog?	CEF maps security-event values into a standard structured schema in <code>CommonSecurityLog</code>; plain Syslog often requires parsing of <code>SyslogMessage</code>.	Sentinel::Compare
+In Microsoft Sentinel, what is the difference between CEF and Syslog?	CEF is a vendor-neutral security-event format carried as an extension of Syslog; Syslog is the broader transport and message protocol and may contain unnormalised vendor text.	Sentinel::Compare
+In Microsoft Sentinel, how can a reliable parser for raw Syslog data be made reusable?	Save the KQL query as a function and invoke the function like a table in later queries.	Sentinel::Syslog
+In Microsoft Sentinel, what should be changed if one Linux forwarder collects both CEF and plain Syslog and the same events appear in both destination tables?	Exclude the CEF facilities from the plain Syslog collection path so those messages are not ingested twice.	Sentinel::Troubleshooting
+In Microsoft Sentinel, which table stores interactive Microsoft Entra sign-in records?	<code>SigninLogs</code>.	Sentinel::Tables
+In Microsoft Sentinel, which table stores Microsoft Entra directory-management activities such as changes to users, groups, roles and applications?	<code>AuditLogs</code>.	Sentinel::Tables
+In Microsoft Sentinel, which table should be queried to verify ingestion from the Microsoft Entra ID Protection connector?	<code>SecurityAlert</code>.	Sentinel::Scenario
+In Microsoft Sentinel, which table stores Microsoft 365 audit activity from workloads such as Exchange, SharePoint and Teams?	<code>OfficeActivity</code>.	Sentinel::Tables
+In Microsoft Sentinel, which connector provides subscription-level Azure Resource Manager and service-health events?	The Azure Activity connector.	Sentinel::AzureActivity
+In Microsoft Sentinel, what mechanism configures Azure Activity logs to stream from subscriptions to the workspace?	An Azure Policy assignment that deploys the subscription log-streaming configuration.	Sentinel::AzureActivity
+In Microsoft Sentinel, why might a remediation task be needed after assigning the Azure Activity connector policy?	To apply the deploy-if-not-exists policy to existing noncompliant subscriptions or resources rather than only future ones.	Sentinel::AzureActivity
+In Microsoft Sentinel, an application sends JSON through the Azure Monitor Logs Ingestion API and needs custom column names and data types. What should be created first?	A custom log table in the Log Analytics workspace with the required schema.	Sentinel::Scenario
+In Microsoft Sentinel, why is a custom table preferable to forcing application-specific JSON into <code>CommonSecurityLog</code>?	A custom table can model the application's actual columns and types; <code>CommonSecurityLog</code> has a predefined CEF schema.	Sentinel::CustomLogs
+For new custom Microsoft Sentinel ingestion, which API should replace the legacy HTTP Data Collector API?	The Azure Monitor Logs Ingestion API.	Sentinel::CustomLogs
+In Microsoft Sentinel, which connector is required to ingest raw Microsoft Defender XDR advanced-hunting events as well as integrated alerts?	The Microsoft Defender XDR connector.	Sentinel::XDR
+In Microsoft Sentinel, why should overlapping Microsoft incident-creation rules be turned off when Defender XDR incident integration is used?	To prevent duplicate incidents created independently from the same Defender product alerts.	Sentinel::XDR
+When Microsoft Sentinel is onboarded to the Microsoft Defender portal, what happens to legacy component alert connectors such as individual MDE or MDO connectors?	The unified Defender XDR integration takes over the supported incident and alert flow, so overlapping legacy component connectors are disconnected or should not be used for duplicate ingestion.	Sentinel::XDR
+In Microsoft Sentinel, which table receives security alerts from the Microsoft Defender XDR connector?	<code>SecurityAlert</code>.	Sentinel::Tables
+In Microsoft Sentinel, a third-party threat-intelligence platform will upload indicators through the supported platform integration. What should be created first?	A Microsoft Entra app registration to provide an application ID and credential for authentication.	Sentinel::ThreatIntel
+In Microsoft Sentinel, which authentication protocol is used by the Threat Intelligence Upload API with a Microsoft Entra application?	OAuth 2.0.	Sentinel::ThreatIntel
+In Microsoft Sentinel, which format is used to represent structured cyber-threat intelligence objects?	STIX, the Structured Threat Information Expression format.	Sentinel::ThreatIntel
+In Microsoft Sentinel, which TAXII versions are supported for collecting threat-intelligence feeds?	TAXII 2.0 and 2.1.	Sentinel::ThreatIntel
+In Microsoft Sentinel, which newer tables support STIX-based threat-intelligence objects and indicators?	<code>ThreatIntelObjects</code> and <code>ThreatIntelIndicators</code>.	Sentinel::Tables
+In Microsoft Sentinel, what is the difference between a data connector and the Logs Ingestion API?	A data connector provides a packaged source integration; the Logs Ingestion API lets a custom application send records through a DCR to a defined Log Analytics table.	Sentinel::Compare
