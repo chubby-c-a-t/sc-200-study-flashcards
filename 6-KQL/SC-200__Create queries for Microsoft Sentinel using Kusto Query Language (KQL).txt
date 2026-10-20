@@ -10,7 +10,7 @@ In KQL, which operator adds a calculated column without removing the existing co
 In KQL, write the syntax to sort events from newest to oldest.	<code>| order by TimeGenerated desc</code>	KQL::Write
 In KQL, write the syntax to exclude Device3 from results.	"<code>| where DeviceName != ""Device3""</code>"	KQL::Write
 In KQL, what is the difference between <code>==</code> and <code>=~</code>?	<code>==</code> is case-sensitive equality; <code>=~</code> is case-insensitive equality.	KQL::Compare
-In KQL, when matching a whole indexed term such as powershell, which operator is generally preferable to <code>contains</code>?	"<code>has</code>, for example <code>| where ProcessCommandLine has ""powershell""</code>."	KQL::Strings
+"In KQL, for performance reasons, when matching a <b>whole indexed term</b> such as ""powershell"", which operator is generally preferable to <code>contains</code>?"	"<code>has</code>, for example <code>| where ProcessCommandLine has ""powershell""</code>."	KQL::Strings
 In KQL, when is <code>contains</code> more appropriate than <code>has</code>?	When matching a character sequence inside a longer value rather than a whole token.	KQL::Strings
 In KQL, write a case-insensitive exact match for AccountType equal to user.	"<code>| where AccountType =~ ""user""</code>"	KQL::Write
 In KQL, write a filter for Event IDs 4624, 4625, or 4672.	<code>| where EventID in (4624, 4625, 4672)</code>	KQL::Write

@@ -2,8 +2,6 @@
 #html:true
 #tags column:3
 In Microsoft Sentinel, after installing a solution from Content hub, where do you configure its connector?	On the Data connectors page. The solution supplies deployable content; the connector configuration establishes ingestion or integration.	Sentinel::Connectors
-In Microsoft Sentinel, what should be checked first when an analytics template returns no data?	Verify that its required data connector is connected and that the expected table is receiving records.	Sentinel::Troubleshooting
-In Microsoft Sentinel, what is the difference between installing a Content hub solution and connecting a data source?	Installing a solution deploys packaged content such as connectors, analytics templates and workbooks; configuring its data connector begins the source integration or ingestion.	Sentinel::ContentHub
 In Microsoft Sentinel, which modern agent should collect Windows events, Syslog and CEF from supported machines?	Azure Monitor Agent (AMA).	Sentinel::AMA
 In Microsoft Sentinel, what controls which records AMA collects, which transformations it applies, and where it sends the data?	A Data Collection Rule (DCR).	Sentinel::DCR
 In Microsoft Sentinel, why are DCRs useful for controlling ingestion cost and volume?	They can filter data before ingestion so unwanted events are not sent to the workspace.	Sentinel::DCR
@@ -14,10 +12,8 @@ In Microsoft Sentinel, which connector is recommended for collecting Windows Sec
 In Microsoft Sentinel, which table receives Windows Security Events collected by the AMA connector?	<code>SecurityEvent</code>.	Sentinel::Tables
 In Microsoft Sentinel, why should the Security Events via Legacy Agent connector normally be avoided for new deployments?	It relies on the retired Log Analytics agent; AMA and DCR-based collection are the current approach.	Sentinel::Legacy
 In Microsoft Sentinel, what risk is created by collecting the same Windows events simultaneously through AMA and the legacy agent?	Duplicate events and double ingestion charges.	Sentinel::Troubleshooting
-In Microsoft Sentinel, which table is useful for confirming that an AMA-managed machine is reporting to Log Analytics?	<code>Heartbeat</code>.	Sentinel::Tables
 In Microsoft Sentinel, what is the difference between the Common and Minimal Windows Security Event collection sets?	Common provides a broader audit trail; Minimal prioritises lower-volume events considered useful for detecting successful compromise.	Sentinel::Windows
 In Microsoft Sentinel, which Windows event ID represents process creation and is important for security monitoring?	Event ID 4688.	Sentinel::Windows
-In Microsoft Sentinel, an organisation needs CEF logs from network appliances that cannot run AMA. What infrastructure should be deployed first?	A supported Linux log forwarder that can receive the appliance logs and run AMA.	Sentinel::CEF
 In Microsoft Sentinel, which connector should ingest security-appliance events formatted in Common Event Format?	Common Event Format (CEF) via AMA.	Sentinel::CEF
 In Microsoft Sentinel, which table receives events from the CEF via AMA connector?	<code>CommonSecurityLog</code>.	Sentinel::Tables
 In Microsoft Sentinel, which table receives plain Linux Syslog data?	<code>Syslog</code>.	Sentinel::Tables
